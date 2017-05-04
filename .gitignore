@@ -1,0 +1,7 @@
+# Files and direcories to be ignored by git
+# Node build artifacts
+node_modules
+# Webstorm IDE
+.idea
+# MacOS
+.DS_Store
