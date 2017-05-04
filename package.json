@@ -1,7 +1,7 @@
 {
   "name": "facebot",
   "version": "1.0.0",
-  "description": "A Facebook chat bot.",
+  "description": "A Facebook chat bot",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
