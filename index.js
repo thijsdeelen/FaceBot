@@ -16,13 +16,6 @@ app.get('/', function (req, res) {
     res.send('Hello world, I am a chat bot')
 })
 
-const express = require('express')
-const app = express()
-app.get('/setup',function(req,res){
-
-    setupGetStartedButton(res);
-});
-
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -66,6 +59,14 @@ function sendTextMessage(sender, text) {
         }
     })
 }
+
+
+const express = require('express')
+const app = express()
+app.get('/setup',function(req,res){
+
+    setupGetStartedButton(res);
+});
 
 // Setup for start button
 function setupGetStartedButton(res){
