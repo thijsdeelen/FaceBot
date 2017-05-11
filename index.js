@@ -80,7 +80,7 @@ function setupGetStartedButton(res){
 
        // Start the request
        request({
-           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ 'EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD',
+           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ "EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD",
            method: 'POST',
            headers: {'Content-Type': 'application/json'},
            form: messageData
