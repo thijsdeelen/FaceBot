@@ -73,7 +73,7 @@ function setupGetStartedButton(res){
        var messageData = {
                "get_started":[
                {
-                   "payload":"action@getStarted"
+                   "payload":"payloud is gedaan"
                    }
                ]
        };
