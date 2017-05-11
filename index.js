@@ -61,8 +61,8 @@ function sendTextMessage(sender, text) {
 }
 
 
-const express = require('express')
-const app = express()
+//const express = require('express')
+//const app = express()
 app.get('/setup',function(req,res){
 
     setupGetStartedButton(res);
