@@ -16,6 +16,13 @@ app.get('/', function (req, res) {
     res.send('Hello world, I am a chat bot')
 })
 
+const express = require('express')
+const app = express()
+app.get('/setup',function(req,res){
+
+    setupGetStartedButton(res);
+});
+
 // for Facebook verification
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'my_voice_is_my_password_verify_me') {
@@ -59,6 +66,35 @@ function sendTextMessage(sender, text) {
         }
     })
 }
+
+// Setup for start button
+function setupGetStartedButton(res){
+       var messageData = {
+               "get_started":[
+               {
+                   "payload":"action@getStarted"
+                   }
+               ]
+       };
+
+       // Start the request
+       request({
+           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ 'EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD',
+           method: 'POST',
+           headers: {'Content-Type': 'application/json'},
+           form: messageData
+       },
+       function (error, response, body) {
+           if (!error && response.statusCode == 200) {
+               // Print out the response body
+               res.send(body);
+
+           } else {
+               // TODO: Handle errors
+               res.send(body);
+           }
+       });
+   }
 
 // Spin up the server
 app.listen(app.get('port'), function() {
