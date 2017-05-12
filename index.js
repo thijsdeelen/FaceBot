@@ -88,10 +88,12 @@ function setupGetStartedButton(res){
            if (!error && response.statusCode == 200) {
                // Print out the response body
                res.send(body);
+               res.send("regel 91");
 
            } else {
                // TODO: Handle errors
                res.send(body);
+               res.send("regel 95");
            }
        });
    }
