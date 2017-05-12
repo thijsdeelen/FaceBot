@@ -72,14 +72,14 @@ function setupGetStartedButton(res){
        var messageData = {
                "get_started":[
                {
-                   "payload":"USER_DEFINED_PAYLOAD"
+                   "payload":"dit_is_mijn_payload"
                    }
                ]
        };
 
        // Start the request
        request({
-           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ 'EAAcDZBHcmgBgBAD4OBEZBcGVgKWfZArSleTmneBTbCFlP2mtM0WTGl2WpNP0ZCMlDdsQ58lbm8Sr9qSz5vfFb47F0RraTZCz1fFsIgsSZB2xAdbXFAgR1YJtu7VY6zlF4ihsZCBR9OpCpePLtNKnNIfdSzdDdgyqSylBejKCQa9zQZDZD',
+           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + 'EAAcDZBHcmgBgBAD4OBEZBcGVgKWfZArSleTmneBTbCFlP2mtM0WTGl2WpNP0ZCMlDdsQ58lbm8Sr9qSz5vfFb47F0RraTZCz1fFsIgsSZB2xAdbXFAgR1YJtu7VY6zlF4ihsZCBR9OpCpePLtNKnNIfdSzdDdgyqSylBejKCQa9zQZDZD',
            method: 'POST',
            headers: {'Content-Type': 'application/json'},
            form: messageData
