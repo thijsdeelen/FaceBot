@@ -34,6 +34,34 @@ app.post('/webhook/', function (req, res) {
             sendTextMessage(sender, text.substring(0, 200))
         }
     }
+
+    var data = req.body;
+
+// Make sure this is a page subscription
+if (data.object === 'page') {
+
+    // Iterate over each entry - there may be multiple if batched
+    data.entry.forEach(function(entry) {
+    var pageID = entry.id;
+    var timeOfEvent = entry.time;
+
+    // Iterate over each messaging event
+    entry.messaging.forEach(function(event) {
+        if (event.message) {
+        //receivedMessage(event);
+        } else {
+            // If the event is a postback and has a payload equals USER_DEFINED_PAYLOAD
+        if(event.postback && event.postback.payload === GET_STARTED )
+        {
+                //present user with some greeting or call to action
+                var msg = "Hi ,I'm a Bot ,and I was created to help you easily .... "
+                //sendMessage(event.sender.id,msg);
+        }
+
+        }
+    });
+    });
+
     res.sendStatus(200)
 })
 
@@ -59,43 +87,6 @@ function sendTextMessage(sender, text) {
         }
     })
 }
-
-
-// Request setup for start button
-app.get('/setup',function(req,res){
-
-    setupGetStartedButton(res);
-});
-
-// Setup for start button
-function setupGetStartedButton(res){
-       var messageData = {
-               "get_started":[
-               {
-                   "payload":"dit_is_mijn_payload"
-                   }
-               ]
-       };
-
-       // Start the request
-       request({
-           url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token=' + 'EAAcDZBHcmgBgBAD4OBEZBcGVgKWfZArSleTmneBTbCFlP2mtM0WTGl2WpNP0ZCMlDdsQ58lbm8Sr9qSz5vfFb47F0RraTZCz1fFsIgsSZB2xAdbXFAgR1YJtu7VY6zlF4ihsZCBR9OpCpePLtNKnNIfdSzdDdgyqSylBejKCQa9zQZDZD',
-           method: 'POST',
-           headers: {'Content-Type': 'application/json'},
-           form: messageData
-       },
-       function (error, response, body) {
-           if (!error && response.statusCode == 200) {
-               // Print out the response body
-               res.send(body);
-
-           } else {
-               // TODO: Handle errors
-               res.send(body);
-               //Bot komt in de else.
-           }
-       });
-   }
 
 // Spin up the server
 app.listen(app.get('port'), function() {
