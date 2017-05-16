@@ -31,7 +31,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'GET_STARTED') {
+            if (text === 'Aan de slag') {
                 sendGenericMessage(sender)
                 continue
             }
@@ -70,7 +70,7 @@ function sendGenericMessage(sender) {
     messageData = {
         "attachment": {
             "type": "template",
-            "payload": {
+            "payload": "GET_STARTED" {
                 "template_type": "generic",
                 "elements": [{
                     "title": "First card",
