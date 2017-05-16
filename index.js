@@ -70,7 +70,7 @@ function sendGenericMessage(sender) {
     messageData = {
         "attachment": {
             "type": "template",
-            "payload": "GET_STARTED" {
+            "payload": {
                 "template_type": "generic",
                 "elements": [{
                     "title": "First card",
@@ -83,7 +83,7 @@ function sendGenericMessage(sender) {
                     }, {
                         "type": "postback",
                         "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
+                        "payload": "GET_STARTED",
                     }],
                 }, {
                     "title": "Second card",
