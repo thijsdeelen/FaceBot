@@ -42,7 +42,7 @@ app.post('/webhook/', function (req, res) {
       {
               //present user with some greeting or call to action
               var msg = "Hi ,I'm a Bot ,and I was created to help you easily .... "
-              sendMessage(event.sender.id,msg);
+              sendTextMessage(event.sender.id,msg);
       }
     }
     res.sendStatus(200)
