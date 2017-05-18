@@ -37,6 +37,13 @@ app.post('/webhook/', function (req, res) {
             }
             sendTextMessage(sender, text.substring(0, 200))
         }
+
+        if(event.postback && event.postback.payload === GET_STARTED )
+      {
+              //present user with some greeting or call to action
+              var msg = "Hi ,I'm a Bot ,and I was created to help you easily .... "
+              //sendMessage(event.sender.id,msg);
+      }
     }
     res.sendStatus(200)
 })
