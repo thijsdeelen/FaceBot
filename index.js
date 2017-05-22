@@ -24,106 +24,121 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong token')
 })
 
-app.post('/webhook/', function (req, res) {
-    messaging_events = req.body.entry[0].messaging
-    for (i = 0; i < messaging_events.length; i++) {
-        event = req.body.entry[0].messaging[i]
-        sender = event.sender.id
-        if (event.message && event.message.text) {
-            text = event.message.text
-            if (text === 'Aan de slag') {
-                sendGenericMessage(sender)
-                continue
-            }
-            sendTextMessage(sender, text.substring(0, 200))
+app.post('/webhook', function (req, res) {
+var data = req.body;
+
+// Make sure this is a page subscription
+if (data.object === 'page') {
+
+
+    data.entry.forEach(function(entry) {
+    var pageID = entry.id;
+    var timeOfEvent = entry.time;
+
+    entry.messaging.forEach(function(event) {
+        if (event.message) {
+
+        //receivedMessage(event);
+
+        } else {
+
+        if(event.postback)
+        {
+            //receivedPostback(event);
         }
 
-        if(event.postback && event.postback.payload === GET_STARTED )
-      {
+        }
+    });
+    });
 
-              sender = event.sender.id
-              //present user with some greeting or call to action
-              var text = "Hi ,I'm a Bot ,and I was created to help you easily .... "
-              sendTextMessage(event.sender.id, text);
-      }
-    }
-    res.sendStatus(200)
-})
+    // You should return a 200 status code to Facebook
+    res.sendStatus(200);
+}
+});
 
 var token = "EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD"
 
-function sendTextMessage(sender, text) {
-    messageData = {
-        text:text
+function receivedMessage(event) {
+var senderID = event.sender.id;
+var recipientID = event.recipient.id;
+var timeOfMessage = event.timestamp;
+var message = event.message;
+
+var messageId = message.mid;
+
+var messageText = message.text;
+var messageAttachments = message.attachments;
+if (messageText) {
+
+    // If we receive a text message, check to see if it matches a keyword
+    // and send back the example. Otherwise, just echo the text we received.
+    switch (messageText) {
+    case 'help' :
+        var msg = "So you need my help ? ";
+        //sendTextMessage(senderID,msg);
+        break;
+
+    default :
+        //sendTextMessage(senderID,"I'm not sure I can understand you !");
+    break;
     }
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
+}
 }
 
-//generic message test
+function receivedPostback(event) {
+    var senderID = event.sender.id;
+    var recipientID = event.recipient.id;
+    var timeOfMessage = event.timestamp;
+    var payload = event.postback.payload;
+    switch(payload)
+    {
+        case 'getstarted':
+            var msg =" Hi,I'm a bot created as a demo for a \n"+
+                     " tutorial to build messenger bots by techiediaries.com\n" ;
 
-function sendGenericMessage(sender) {
-    messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "GET_STARTED",
-                    }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
-        }
+            //sendTextMessage(senderID,msg);
+            break;
+        default :
+            var msg = "Implement logic for this Postback";
+            //sendTextMessage(senderID,msg);
+        break;
     }
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:token},
-        method: 'POST',
-        json: {
-            recipient: {id:sender},
-            message: messageData,
-        }
-    }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-    })
+
 }
 
+function sendTextMessage(recipientId, messageText) {
+    var messageData = {
+        recipient: {
+        id: recipientId
+        },
+        message: {
+        text: messageText
+        }
+    };
+    // call the send API
+    callSendAPI(messageData);
+}
+
+function callSendAPI(messageData) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: { access_token: PAGE_ACCESS_TOKEN },
+        method: 'POST',
+        json: messageData
+
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+        var recipientId = body.recipient_id;
+        var messageId = body.message_id;
+        //successfull
+
+        } else {
+            console.error("Unable to send message.");
+            console.error(response);
+            console.error(error);
+        }
+    });
+}
 
 // Spin up the server
 app.listen(app.get('port'), function() {
