@@ -38,13 +38,13 @@ if (data.object === 'page') {
     entry.messaging.forEach(function(event) {
         if (event.message) {
 
-        //receivedMessage(event);
+        receivedMessage(event);
 
         } else {
 
         if(event.postback)
         {
-            //receivedPostback(event);
+            receivedPostback(event);
         }
 
         }
@@ -75,11 +75,11 @@ if (messageText) {
     switch (messageText) {
     case 'help' :
         var msg = "So you need my help ? ";
-        //sendTextMessage(senderID,msg);
+        sendTextMessage(senderID,msg);
         break;
 
     default :
-        //sendTextMessage(senderID,"I'm not sure I can understand you !");
+        sendTextMessage(senderID,"I'm not sure I can understand you !");
     break;
     }
 }
@@ -92,15 +92,15 @@ function receivedPostback(event) {
     var payload = event.postback.payload;
     switch(payload)
     {
-        case 'getstarted':
+        case 'GET_STARTED':
             var msg =" Hi,I'm a bot created as a demo for a \n"+
                      " tutorial to build messenger bots by techiediaries.com\n" ;
 
-            //sendTextMessage(senderID,msg);
+            sendTextMessage(senderID,msg);
             break;
         default :
             var msg = "Implement logic for this Postback";
-            //sendTextMessage(senderID,msg);
+            sendTextMessage(senderID,msg);
         break;
     }
 
@@ -122,7 +122,7 @@ function sendTextMessage(recipientId, messageText) {
 function callSendAPI(messageData) {
     request({
         uri: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: { access_token: PAGE_ACCESS_TOKEN },
+        qs: { access_token: token },
         method: 'POST',
         json: messageData
 
