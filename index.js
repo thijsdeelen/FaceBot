@@ -74,12 +74,12 @@ if (messageText) {
     // and send back the example. Otherwise, just echo the text we received.
     switch (messageText) {
     case 'help' :
-        var msg = "So you need my help ? ";
+        var msg = "Via mij kan je kaarten kopen voor festivals. Type de naam van het festival wat je wilt bezoeken en ik zal je verder helpen.";
         sendTextMessage(senderID,msg);
         break;
 
     default :
-        sendTextMessage(senderID,"I'm not sure I can understand you !");
+        sendTextMessage(senderID,"Dat begreep ik niet helemaal... type help als je me hulp nodig heb.");
     break;
     }
 }
@@ -93,13 +93,13 @@ function receivedPostback(event) {
     switch(payload)
     {
         case 'GET_STARTED':
-            var msg =" Hi,I'm a bot created as a demo for a \n"+
-                     " tutorial to build messenger bots by techiediaries.com\n" ;
+            var msg =" Hoi, ik ben een bot. \n"+
+                     " Hoe kan ik je helpen?\n" ;
 
             sendTextMessage(senderID,msg);
             break;
         default :
-            var msg = "Implement logic for this Postback";
+            var msg = "hier komt nog logica.";
             sendTextMessage(senderID,msg);
         break;
     }
