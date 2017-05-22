@@ -74,7 +74,7 @@ if (messageText) {
     // and send back the example. Otherwise, just echo the text we received.
     switch (messageText) {
     case 'help' :
-        var msg = "Via mij kan je kaarten kopen voor festivals. Type de naam van het festival wat je wilt bezoeken en ik zal je verder helpen.";
+        var msg = "Via mij kan je kaarten kopen voor festivals. Type festivals en ik zal je een lijst geven met aankomende festivals.";
         sendTextMessage(senderID,msg);
         break;
 
@@ -93,6 +93,10 @@ if (messageText) {
           sendTextMessage(senderID,msg);
           break;
 
+    case 'festivals' :
+        var msg = "flow festival, Dancetour, Harmony of hardcore, The road to graauwrock.";
+        sendTextMessage(senderID,msg);
+        break;
 
     default :
         sendTextMessage(senderID,"Dat begreep ik niet helemaal... type help als je me hulp nodig heb.");
