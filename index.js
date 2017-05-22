@@ -78,6 +78,22 @@ if (messageText) {
         sendTextMessage(senderID,msg);
         break;
 
+    case 'flow festival' :
+        var msg = "Je wilt dus kaarten kopen voor Flow festival. Wil je VIP of regulieren kaarten?";
+        sendTextMessage(senderID,msg);
+        break;
+
+    case 'VIP' :
+        var msg = "Je wilt dus VIP tickets. Hoeveel kaarten wil je kopen?";
+        sendTextMessage(senderID,msg);
+        break;
+
+    case 'regulier' :
+          var msg = "Je wilt dus regulieren tickets. Hoeveel kaarten wil je kopen?";
+          sendTextMessage(senderID,msg);
+          break;
+
+
     default :
         sendTextMessage(senderID,"Dat begreep ik niet helemaal... type help als je me hulp nodig heb.");
     break;
