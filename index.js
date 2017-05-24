@@ -80,8 +80,8 @@ if (messageText) {
 
     case 'flow festival' :
         var msg = "Je wilt dus kaarten kopen voor Flow festival. Wil je VIP of regulieren kaarten?";
-        //sendTextMessage(senderID,msg);
-        sendButtonMessage(recipientID);
+        sendTextMessage(senderID,msg);
+        sendButtonMessage(senderID);
         break;
 
     case 'VIP' :
