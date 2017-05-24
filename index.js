@@ -80,7 +80,7 @@ if (messageText) {
 
     case 'flow festival' :
         var msg = "Je wilt dus kaarten kopen voor Flow festival. Wil je VIP of regulieren kaarten?";
-        sendTextMessage(senderID,msg);
+        //sendTextMessage(senderID,msg);
         sendButtonMessage(senderID);
         break;
 
@@ -116,6 +116,11 @@ function receivedPostback(event) {
         case 'GET_STARTED':
             var msg =" Hoi, ik ben een bot. \n"+
                      " Hoe kan ik je helpen?\n" ;
+
+            sendTextMessage(senderID,msg);
+            break;
+        case 'PAYLOAD_FLOW_FESTIVAL':
+            var msg ="Je hebt gekozen voor flow festival.";
 
             sendTextMessage(senderID,msg);
             break;
@@ -161,8 +166,8 @@ function sendButtonMessage(recipientID) {
             title: "Open Web URL"
           }, {
             type: "postback",
-            title: "Trigger Postback",
-            payload: "DEVELOPER_DEFINED_PAYLOAD"
+            title: "Flow festival",
+            payload: "PAYLOAD_FLOW_FESTIVAL"
           }, {
             type: "phone_number",
             title: "Call Phone Number",
