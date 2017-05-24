@@ -144,10 +144,10 @@ function sendTextMessage(recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
-function sendButtonMessage(recipientId) {
+function sendButtonMessage(recipientID) {
   var messageData = {
     recipient: {
-      id: recipientId
+      id: recipientID
     },
     message: {
       attachment: {
