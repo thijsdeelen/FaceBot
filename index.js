@@ -80,8 +80,7 @@ if (messageText) {
 
     case 'flow festival' :
         var msg = "Je wilt dus kaarten kopen voor Flow festival. Wil je VIP of regulieren kaarten?";
-        //sendTextMessage(senderID,msg);
-        sendButtonMessage(recipientId);
+        sendTextMessage(senderID,msg);
         break;
 
     case 'VIP' :
@@ -119,24 +118,6 @@ function receivedPostback(event) {
 
             sendTextMessage(senderID,msg);
             break;
-
-            case 'PAYLOAD_FLOW':
-                var msg ="knop geklikt : flow festival";
-
-                sendTextMessage(senderID,msg);
-                break;
-
-                case 'PAYLOAD_HARDCORE':
-                    var msg ="Knop gelikt : hardcore";
-
-                    sendTextMessage(senderID,msg);
-                    break;
-
-                    case 'PAYLOAD_NEDERLAND':
-                        var msg ="Knop geklikt : nederland";
-
-                        sendTextMessage(senderID,msg);
-                        break;
         default :
             var msg = "hier komt nog logica.";
             sendTextMessage(senderID,msg);
@@ -156,38 +137,6 @@ function sendTextMessage(recipientId, messageText) {
     };
     // call the send API
     callSendAPI(messageData);
-}
-
-function sendButtonMessage(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "Voor welk evenement wil je kaarten kopen?",
-          buttons:[{
-            type: "postback",
-            title: "Flow festival",
-            payload: "PAYLOAD_FLOW"
-          }, {
-            type: "postback",
-            title: "Harmony of Hardcore",
-            payload: "PAYLOAD_HARDCORE"
-          }, {
-            type: "postback",
-            title: "Nederlandse pauper concerten",
-            payload: "PAYLOAD_NEDERLAND"
-          }]
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
 }
 
 function callSendAPI(messageData) {
