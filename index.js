@@ -147,6 +147,21 @@ function receivedPostback(event) {
             sendTextMessage(senderID,msg);
             break;
 
+            case 'PAYLOAD_REGULIER':
+                sendButtonMessageRegulier(senderID);
+                break;
+
+            case 'PAYLOAD_VIP':
+                var msg ="VIP kaarten zijn helaas uitverkocht!";
+
+                sendTextMessage(senderID,msg);
+                break;
+
+            case 'PAYLOAD_EARLY_BIRD':
+                var msg ="Early-bird kaarten zijn helaas uitverkocht!";
+
+                sendTextMessage(senderID,msg);
+                break;
 
         default :
             var msg = "hier komt nog logica.";
@@ -261,6 +276,39 @@ function sendButtonMessageFlow(recipientID) {
             type: "postback",
             title: "VIP",
             payload: "PAYLOAD_VIP"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+
+function sendButtonMessageRegulier(recipientID) {
+  var messageData = {
+    recipient: {
+      id: recipientID
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Hoeveel regulieren kaarten wil je kopen?",
+          buttons:[{
+            type: "postback",
+            title: "1",
+            payload: "PAYLOAD_"
+          }, {
+            type: "postback",
+            title: "2",
+            payload: "PAYLOAD_2"
+          }, {
+            type: "postback",
+            title: "3",
+            payload: "PAYLOAD_3"
           }]
         }
       }
