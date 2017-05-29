@@ -117,7 +117,7 @@ function receivedPostback(event) {
             var msg =" Hoi, ik ben een bot. \n"+
                      " Hoe kan ik je helpen?\n" ;
 
-            sendTextMessage(senderID,msg);
+            sendButtonMessage(senderID);
             break;
         case 'PAYLOAD_FLOW_FESTIVAL':
             var msg ="Je hebt gekozen voor flow festival.";
