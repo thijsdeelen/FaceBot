@@ -114,28 +114,15 @@ function receivedPostback(event) {
     switch(payload)
     {
         case 'GET_STARTED':
-
-            sendButtonMessageStart(senderID);
-            break;
-        case 'PAYLOAD_HELP':
-            var msg ="Je hebt dus me hulp nodig... Druk op de knop festivals om een festival te selecteren. Druk op de knop stoppen om met het gesprek te stoppen.";
+            var msg =" Hoi, ik ben een bot. \n"+
+                     " Hoe kan ik je helpen?\n" ;
 
             sendTextMessage(senderID,msg);
             break;
-
-        case 'PAYLOAD_FESTIVALS':
-
-            sendButtonMessageFestivals(senderID);
-            break;
-
-        case 'PAYLOAD_KELTFEST':
-
-            sendButtonMessageKelt(senderID);
-            break;
-
         case 'PAYLOAD_FLOW_FESTIVAL':
+            var msg ="Je hebt gekozen voor flow festival.";
 
-            sendButtonMessageFlow(senderID);
+            sendTextMessage(senderID,msg);
             break;
         default :
             var msg = "hier komt nog logica.";
@@ -162,7 +149,7 @@ function sendTextMessage(recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
-function sendButtonMessageStart(recipientID) {
+function sendButtonMessage(recipientID) {
   var messageData = {
     recipient: {
       id: recipientID
@@ -172,50 +159,19 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Hallo, ik ben een bot! Via mij kan je kaarten kopen. Druk op een van de aangegeven opties hieronder om door te gaan.",
+          text: "This is test text",
           buttons:[{
-            type: "postback",
-            title: "Festivals",
-            payload: "PAYLOAD_FESTIVALS"
+            type: "web_url",
+            url: "https://www.oculus.com/en-us/rift/",
+            title: "Open Web URL"
           }, {
             type: "postback",
-            title: "Help",
-            payload: "PAYLOAD_HELP"
-          }, {
-            type: "postback",
-            title: "Stoppen",
-            payload: "PAYLOAD_STOPPEN"
-          }]
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
-//Button template for different festivals.
-
-function sendButtonMessageFestivals(recipientID) {
-  var messageData = {
-    recipient: {
-      id: recipientID
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "Kies een van de onderstaande festivals.",
-          buttons:[{
-            type: "postback",
-            title: "Keltfest",
-            payload: "PAYLOAD_KELTFEST"
-          }, {
-            type: "postback",
-            title: "Flow Festival",
+            title: "Flow festival",
             payload: "PAYLOAD_FLOW_FESTIVAL"
-          }
+          }, {
+            type: "phone_number",
+            title: "Call Phone Number",
+            payload: "+16505551234"
           }]
         }
       }
