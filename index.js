@@ -114,16 +114,28 @@ function receivedPostback(event) {
     switch(payload)
     {
         case 'GET_STARTED':
-            var msg =" Hoi, ik ben een bot. \n"+
-                     " Hoe kan ik je helpen?\n" ;
-
-            sendButtonMessage(senderID);
+            sendButtonMessageStart(senderID);
             break;
-        case 'PAYLOAD_FLOW_FESTIVAL':
-            var msg ="Je hebt gekozen voor flow festival.";
+
+        case 'PAYLOAD_FESTIVALS':
+            var msg ="Je hebt geklikt op festivals..";
 
             sendTextMessage(senderID,msg);
             break;
+
+        case 'PAYLOAD_HELP':
+            var msg ="Druk op de knop festivals om een lijst met festivals te krijgen. Druk op de knop stoppen om het gesprek te stoppen.";
+
+            sendTextMessage(senderID,msg);
+            break;
+
+        case 'PAYLOAD_STOPPEN':
+            var msg ="Jammer dat je wilt stoppen met chatten. Graag tot de volgende keer!";
+
+            sendTextMessage(senderID,msg);
+            break;
+
+
         default :
             var msg = "hier komt nog logica.";
             sendTextMessage(senderID,msg);
@@ -149,7 +161,7 @@ function sendTextMessage(recipientId, messageText) {
  * Send a button message using the Send API.
  *
  */
-function sendButtonMessage(recipientID) {
+function sendButtonMessageStart(recipientID) {
   var messageData = {
     recipient: {
       id: recipientID
@@ -159,19 +171,19 @@ function sendButtonMessage(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "This is test text",
+          text: "Hoi! Ik ben een bot. Via mij kunt u kaarten kopen voor aankomende festivals. Druk op een van de knoppen hier onder om door te gaan.",
           buttons:[{
-            type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Open Web URL"
+            type: "postback",
+            title: "festivals",
+            payload: "PAYLOAD_FESTIVALS"
           }, {
             type: "postback",
-            title: "Flow festival",
-            payload: "PAYLOAD_FLOW_FESTIVAL"
+            title: "Help",
+            payload: "PAYLOAD_HELP"
           }, {
-            type: "phone_number",
-            title: "Call Phone Number",
-            payload: "+16505551234"
+            type: "postback",
+            title: "Stoppen",
+            payload: "PAYLOAD_STOPPEN"
           }]
         }
       }
