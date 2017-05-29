@@ -118,9 +118,7 @@ function receivedPostback(event) {
             break;
 
         case 'PAYLOAD_FESTIVALS':
-            var msg ="Je hebt geklikt op festivals..";
-
-            sendTextMessage(senderID,msg);
+            sendButtonMessageFestivals(senderID);
             break;
 
         case 'PAYLOAD_HELP':
@@ -184,6 +182,39 @@ function sendButtonMessageStart(recipientID) {
             type: "postback",
             title: "Stoppen",
             payload: "PAYLOAD_STOPPEN"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+
+function sendButtonMessageFestivals(recipientID) {
+  var messageData = {
+    recipient: {
+      id: recipientID
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Hierbij een lijst met aankomende festivals. Druk op een van de knoppen om door te gaan.",
+          buttons:[{
+            type: "postback",
+            title: "Flow festival",
+            payload: "PAYLOAD_FLOW_FESTIVAL"
+          }, {
+            type: "postback",
+            title: "De toppers",
+            payload: "PAYLOAD_TOPPERS"
+          }, {
+            type: "postback",
+            title: "Dancetour Breda",
+            payload: "PAYLOAD_DANCETOUR"
           }]
         }
       }
