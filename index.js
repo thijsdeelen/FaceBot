@@ -121,6 +121,20 @@ function receivedPostback(event) {
             sendButtonMessageFestivals(senderID);
             break;
 
+        case 'PAYLOAD_FLOW_FESTIVAL':
+            sendButtonMessageFlow(senderID);
+            break;
+
+        case 'PAYLOAD_DANCETOUR':
+            var msg="Dancetour Breda is helaas uitverkocht.";
+            sendTextMessage(senderID,msg);
+            break;
+
+        case 'PAYLOAD_TOPPERS':
+            var msg="De Toppers zijn helaas uitverkocht.";
+            sendTextMessage(senderID,msg);
+            break;
+
         case 'PAYLOAD_HELP':
             var msg ="Druk op de knop festivals om een lijst met festivals te krijgen. Druk op de knop stoppen om het gesprek te stoppen.";
 
@@ -215,6 +229,38 @@ function sendButtonMessageFestivals(recipientID) {
             type: "postback",
             title: "Dancetour Breda",
             payload: "PAYLOAD_DANCETOUR"
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function sendButtonMessageFlow(recipientID) {
+  var messageData = {
+    recipient: {
+      id: recipientID
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Je wilt dus kaarten kopen voor Flow Festival. Wil je Early-bird, Regulier of VIP kaarten kopen voor Flow Festival?",
+          buttons:[{
+            type: "postback",
+            title: "Early-bird",
+            payload: "PAYLOAD_EARLY_BIRD"
+          }, {
+            type: "postback",
+            title: "Regulier",
+            payload: "PAYLOAD_REGULIER"
+          }, {
+            type: "postback",
+            title: "VIP",
+            payload: "PAYLOAD_VIP"
           }]
         }
       }
