@@ -38,7 +38,7 @@ if (data.object === 'page') {
     entry.messaging.forEach(function(event) {
         if (event.message) {
 
-        receivedPostback(event);
+        receivedMessage(event);
 
         } else {
 
@@ -114,21 +114,12 @@ function receivedPostback(event) {
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
 
-//message DATA
-var timeOfMessage = event.timestamp;
-var message = event.message;
-
-var messageId = message.mid;
-
-var messageText = message.text;
-var messageAttachments = message.attachments;
-
     if(payload == 'GET_STARTED')
     {
       sendButtonMessageStart(senderID);
     }
 
-    if(payload == 'PAYLOAD_STARTEN' || messageText == 'starten')
+    if(payload == 'PAYLOAD_STARTEN')
     {
       sendButtonMessageFestivals(senderID);
     }
