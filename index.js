@@ -172,8 +172,8 @@ function receivedPostback(event) {
             var msg = "hier komt nog logica.";
             sendTextMessage(senderID,msg);
         break;
-        */
-    }
+
+    }*/
 
 }
 
