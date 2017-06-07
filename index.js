@@ -72,36 +72,9 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    switch (messageText) {
-    case 'help' :
-        var msg = "Via mij kan je kaarten kopen voor festivals. Type festivals en ik zal je een lijst geven met aankomende festivals.";
-        sendTextMessage(senderID,msg);
-        break;
-
-    case 'flow festival' :
-        var msg = "Je wilt dus kaarten kopen voor Flow festival. Wil je VIP of regulieren kaarten?";
-        //sendTextMessage(senderID,msg);
-        sendButtonMessage(senderID);
-        break;
-
-    case 'VIP' :
-        var msg = "Je wilt dus VIP tickets. Hoeveel kaarten wil je kopen?";
-        sendTextMessage(senderID,msg);
-        break;
-
-    case 'regulier' :
-          var msg = "Je wilt dus regulieren tickets. Hoeveel kaarten wil je kopen?";
-          sendTextMessage(senderID,msg);
-          break;
-
-    case 'festivals' :
-        var msg = "flow festival, Dancetour, Harmony of hardcore, The road to graauwrock.";
-        sendTextMessage(senderID,msg);
-        break;
-
-    default :
-        sendTextMessage(senderID,"Dat begreep ik niet helemaal... type help als je me hulp nodig heb.");
-    break;
+    if(messageText == 'starten')
+    {
+      sendButtonMessageFestivals(senderID);
     }
 }
 }
