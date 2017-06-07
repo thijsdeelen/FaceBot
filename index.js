@@ -36,18 +36,18 @@ if (data.object === 'page') {
     var timeOfEvent = entry.time;
 
     entry.messaging.forEach(function(event) {
-        if (event.message) {
+        //if (event.message) {
 
-        receivedMessage(event);
+        //receivedMessage(event);
 
-        } else {
+        //} else {
 
         if(event.postback)
         {
             receivedPostback(event);
         }
 
-        }
+        //}
     });
     });
 
@@ -107,14 +107,30 @@ if (messageText) {
 }
 
 function receivedPostback(event) {
+
+  //PAYLOAD DATA
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
 
+//message DATA
+var timeOfMessage = event.timestamp;
+var message = event.message;
+
+var messageId = message.mid;
+
+var messageText = message.text;
+var messageAttachments = message.attachments;
+
     if(payload == 'GET_STARTED')
     {
       sendButtonMessageStart(senderID);
+    }
+
+    if(payload == 'PAYLOAD_STARTEN' || messageText == 'starten')
+    {
+      sendButtonMessageFestivals(senderID);
     }
     /*switch(payload)
     {
