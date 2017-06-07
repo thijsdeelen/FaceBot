@@ -36,18 +36,18 @@ if (data.object === 'page') {
     var timeOfEvent = entry.time;
 
     entry.messaging.forEach(function(event) {
-        //if (event.message) {
+        if (event.message) {
 
-        //receivedMessage(event);
+        receivedPostback(event);
 
-        //} else {
+        } else {
 
         if(event.postback)
         {
             receivedPostback(event);
         }
 
-        //}
+        }
     });
     });
 
