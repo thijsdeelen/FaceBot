@@ -3,9 +3,6 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
-//bepaal de status
-var status;
-
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -114,26 +111,11 @@ function receivedPostback(event) {
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
-
-    var timeOfMessage = event.timestamp;
-    var message = event.message;
-
-    var messageId = message.mid;
-
-    var messageText = message.text;
-    var messageAttachments = message.attachments;
-
-    if(payload == 'GET_STARTED' || messageText == 'beginnen' )
-    {
-      sendButtonMessageStart(senderID);
-      status = 'started';
-    }
-    //if(payload == '')
     switch(payload)
     {
         case 'GET_STARTED':
-          sendButtonMessageStart(senderID);
-        break;
+            sendButtonMessageStart(senderID);
+            break;
 
         case 'PAYLOAD_FESTIVALS':
             sendButtonMessageFestivals(senderID);
@@ -220,7 +202,7 @@ function sendButtonMessageStart(recipientID) {
           buttons:[{
             type: "postback",
             title: "festivals",
-            payload: "PAYLOAD_STARTEN"
+            payload: "PAYLOAD_FESTIVALS"
           }, {
             type: "postback",
             title: "Help",
