@@ -204,19 +204,12 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Hoi! Ik ben een bot. Via mij kunt u kaarten kopen voor aankomende festivals. Druk op een van de knoppen hier onder om door te gaan.",
+          text: "He, leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Druk op de knop 'starten' of type 'starten' om te beginnen.",
           buttons:[{
             type: "postback",
-            title: "festivals",
-            payload: "PAYLOAD_FESTIVALS"
-          }, {
-            type: "postback",
-            title: "Help",
-            payload: "PAYLOAD_HELP"
-          }, {
-            type: "postback",
-            title: "Stoppen",
-            payload: "PAYLOAD_STOPPEN"
+            title: "Starten",
+            payload: "PAYLOAD_STARTEN"
+
           }]
         }
       }
