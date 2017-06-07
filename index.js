@@ -111,7 +111,12 @@ function receivedPostback(event) {
     var recipientID = event.recipient.id;
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
-    switch(payload)
+
+    if(payload == 'GET_STARTED')
+    {
+      sendButtonMessageStart(senderID);
+    }
+    /*switch(payload)
     {
         case 'GET_STARTED':
             sendButtonMessageStart(senderID);
@@ -167,6 +172,7 @@ function receivedPostback(event) {
             var msg = "hier komt nog logica.";
             sendTextMessage(senderID,msg);
         break;
+        */
     }
 
 }
