@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
-int status = 1;
+//var status = 1;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -73,7 +73,7 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText == 'starten' && status = 1 || messageText.includes('starten') && status = 1)
+    if(messageText == 'starten' && status == 1 || messageText.includes('starten') && status == 1)
     {
       sendButtonMessageFestivals(senderID);
     }
