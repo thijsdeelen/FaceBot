@@ -174,7 +174,7 @@ function sendTextMessage(recipientId, messageText) {
 /*
  * Send a button message using the Send API.
  *
-
+*/
 function sendButtonMessageStart(recipientID) {
   var messageData = {
     recipient: {
@@ -199,7 +199,7 @@ function sendButtonMessageStart(recipientID) {
 
   callSendAPI(messageData);
 }
-*/
+
 
 function sendButtonMessageFestivals(recipientID) {
   var messageData = {
