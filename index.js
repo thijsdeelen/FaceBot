@@ -88,7 +88,7 @@ function receivedPostback(event) {
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
 
-    if(payload == 'GET_STARTED' && status = 1)
+    if(payload == 'GET_STARTED' && status == 1)
     {
       sendButtonMessageStart(senderID);
     }
