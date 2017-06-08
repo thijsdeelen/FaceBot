@@ -66,7 +66,7 @@ var message = event.message;
 
 var messageId = message.mid;
 
-var messageText = message.text;
+var messageText = message.text.toLowerCase();
 var messageAttachments = message.attachments;
 if (messageText) {
 
