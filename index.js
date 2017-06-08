@@ -72,7 +72,7 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText == 'starten')
+    if(messageText == 'starten' || messageText.includes('starten'))
     {
       sendButtonMessageFestivals(senderID);
     }
