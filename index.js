@@ -2,6 +2,8 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
+
+//status van verkoop
 var status = 1;
 
 app.set('port', (process.env.PORT || 5000))
@@ -73,9 +75,24 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText == 'starten' && status == 1 || messageText.includes('starten') && status == 1)
+    if(messageText.includes('starten') && status == 1)
     {
       sendButtonMessageFestivals(senderID);
+      status = 2;
+    }
+    if(messageText.includes('flow festival') && status == 2)
+    {
+      sendButtonMessageFlow(senderID);
+      status = 3;
+    }
+    if(messageText.includes('help')
+    {
+      sendButtonMessageHelp(senderID);
+    }
+
+    if(status == 6)
+    {
+      int phone = messageText;
     }
 }
 }
@@ -92,10 +109,14 @@ function receivedPostback(event) {
     {
       sendButtonMessageStart(senderID);
     }
-
-    if(payload == 'PAYLOAD_STARTEN')
+    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 2)
     {
-      sendButtonMessageFestivals(senderID);
+      sendButtonMessageFlow(senderID);
+    }
+
+    if(payload == 'PAYLOAD_HELP')
+    {
+      sendButtonMessageHelp(senderID);
     }
     /*switch(payload)
     {
@@ -185,11 +206,11 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "He, leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Druk op de knop 'starten' of type 'starten' om te beginnen.",
+          text: "He, leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
           buttons:[{
             type: "postback",
-            title: "Starten",
-            payload: "PAYLOAD_STARTEN"
+            title: "Help mij",
+            payload: "PAYLOAD_HELP"
 
           }]
         }
@@ -201,7 +222,7 @@ function sendButtonMessageStart(recipientID) {
 }
 
 
-function sendButtonMessageFestivals(recipientID) {
+function sendButtonMessageHelp(recipientID) {
   var messageData = {
     recipient: {
       id: recipientID
@@ -211,19 +232,11 @@ function sendButtonMessageFestivals(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Hierbij een lijst met aankomende festivals. Druk op een van de knoppen om door te gaan.",
+          text: "Je hebt dus mijn hulp nodig? Geen probleem! Ik kan je helpen bij het kopen van kaarten voor aankomende festivals. Door simpel weg te zeggen naar welk festival je wilt zal ik je verdere vragen stellen om speciaal voor jou de geschikte kaarten te vinden. Om te beginnen kan je bijvoorbeeld zeggen 'Ik wil graag kaarten kopen voor Flow festival'. Ook kan je op één van de knoppen drukken.",
           buttons:[{
             type: "postback",
-            title: "Flow festival",
-            payload: "PAYLOAD_FLOW_FESTIVAL"
-          }, {
-            type: "postback",
-            title: "De toppers",
-            payload: "PAYLOAD_TOPPERS"
-          }, {
-            type: "postback",
-            title: "Dancetour Breda",
-            payload: "PAYLOAD_DANCETOUR"
+            title: "Aankomende Festivals",
+            payload: "PAYLOAD_AANKOMEND"
           }]
         }
       }
