@@ -85,15 +85,11 @@ if (messageText) {
       sendButtonMessageFlow(senderID);
       status = 3;
     }
-    if(messageText.includes('help')
+    if(messageText.includes('help'))
     {
       sendButtonMessageHelp(senderID);
     }
 
-    if(status == 6)
-    {
-      int phone = messageText;
-    }
 }
 }
 
