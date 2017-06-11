@@ -110,9 +110,16 @@ function receivedPostback(event) {
       sendButtonMessageFlow(senderID);
     }
 
-    if(payload == 'PAYLOAD_HELP')
+    // Uitleg hoe je de bot kan gebruiken naar gebruiker.
+    if(payload == 'PAYLOAD_HELP' && status == 1)
     {
       sendButtonMessageHelp(senderID);
+    }
+
+    // Een lijst met aankomende festivals.
+    if(payload == 'PAYLOAD_AANKOMEND' && status == 1)
+    {
+      sendButtonMessageAankomend(senderID);
     }
     /*switch(payload)
     {
@@ -208,6 +215,12 @@ function sendButtonMessageStart(recipientID) {
             title: "Help mij",
             payload: "PAYLOAD_HELP"
 
+          },
+          {
+            type: "postback",
+            title: "Aankomende festivals",
+            payload: "PAYLOAD_AANKOMEND"
+
           }]
         }
       }
@@ -242,7 +255,7 @@ function sendButtonMessageHelp(recipientID) {
   callSendAPI(messageData);
 }
 
-function sendButtonMessageFlow(recipientID) {
+function sendButtonMessageAankomend(recipientID) {
   var messageData = {
     recipient: {
       id: recipientID
@@ -252,19 +265,11 @@ function sendButtonMessageFlow(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Je wilt dus kaarten kopen voor Flow Festival. Wil je Early-bird, Regulier of VIP kaarten kopen voor Flow Festival?",
+          text: "Er zijn weer genoeg festivals in aantocht. Hierbij een lijst met aankomende festivals.",
           buttons:[{
             type: "postback",
-            title: "Early-bird",
-            payload: "PAYLOAD_EARLY_BIRD"
-          }, {
-            type: "postback",
-            title: "Regulier",
-            payload: "PAYLOAD_REGULIER"
-          }, {
-            type: "postback",
-            title: "VIP",
-            payload: "PAYLOAD_VIP"
+            title: "Flow Festival",
+            payload: "PAYLOAD_FLOW_FESTIVAL"
           }]
         }
       }
