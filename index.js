@@ -88,11 +88,13 @@ if (messageText) {
     }
     if(messageText.includes('help') &&  voortgang == 'begin')
     {
+      voortgang = 'begin'
       sendButtonMessageHelp(senderID);
     }
 
     if(messageText.includes('regulier') && voortgang == 'festival')
     {
+      voortgang = 'ticket'
       sendButtonMessageRegulier(senderID);
     }
 
