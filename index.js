@@ -140,7 +140,7 @@ function receivedPostback(event) {
       sendButtonMessageAankomend(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER')
+    if(payload == 'PAYLOAD_REGULIER' && status == '2')
     {
       status = '3';
       sendButtonMessageRegulier(senderID);
