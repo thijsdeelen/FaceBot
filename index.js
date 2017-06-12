@@ -75,14 +75,16 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival'))
+    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1)
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival') && status == 2)
+    if(messageText.includes('flow festival') && status == 1)
     {
       sendButtonMessageFlow(senderID);
-      status = 3;
+
+      //zet status op 2 voor de volgende stap.
+      status = 2;
     }
     if(messageText.includes('help') && status == 1)
     {
@@ -112,9 +114,12 @@ function receivedPostback(event) {
     {
       sendButtonMessageStart(senderID);
     }
-    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 2)
+    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 1)
     {
       sendButtonMessageFlow(senderID);
+
+      //Zet status op 2. Verwacht nu VIP of regulier.
+      status = 2;
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
@@ -311,6 +316,39 @@ function sendButtonMessageStoppen(recipientID) {
       }
     }
   };
+
+  function sendButtonMessageFlow(recipientID) {
+    var messageData = {
+      recipient: {
+        id: recipientID
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "Je wilt dus naar Flow Festival 2017? Goeie keuze! Voor dit festival zijn 2 soorten kaarten beschikbaar. VIP & Regulier. Welke variant wil je aanschaffen?",
+            buttons:[{
+              type: "postback",
+              title: "Reguliere tickets",
+              payload: "PAYLOAD_REGULIER"
+            }, {
+              type: "postback",
+              title: "VIP tickets",
+              payload: "PAYLOAD_VIP"
+            }, {
+              type: "postback",
+              title: "stoppen",
+              payload: "PAYLOAD_STOPPEN"
+            }]
+          }
+        }
+      }
+    };
+
+
+
+
 
   callSendAPI(messageData);
 }
