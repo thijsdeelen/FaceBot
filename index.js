@@ -125,6 +125,8 @@ function receivedPostback(event) {
     }
     if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
     {
+      msg = status;
+      sendTextMessage(senderID, msg);
       status = '2';
       sendButtonMessageFlow(senderID);
       //Zet status op 2. Verwacht nu VIP of regulier.
