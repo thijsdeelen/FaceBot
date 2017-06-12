@@ -4,7 +4,7 @@ var request = require('request')
 var app = express()
 
 //status van verkoop
-var status;
+var status = 0;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -75,26 +75,26 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival') && status == '1')
+    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1)
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival') && status == '1')
+    if(messageText.includes('flow festival') && status == 1)
     {
-      status = '2';
+      status = 2;
       sendButtonMessageFlow(senderID);
       //zet status op 2 voor de volgende stap.
     }
-    if(messageText.includes('help') && status == '1')
+    if(messageText.includes('help') && status == 1)
     {
       sendButtonMessageHelp(senderID);
     }
 
-    if(messageText.includes('regulier') && status == '2')
+    if(messageText.includes('regulier') && status == 2)
     {
       msg = status;
       sendTextMessage(senderID, msg);
-      status = '3';
+      status = 3;
       sendButtonMessageRegulier(senderID);
     }
 
@@ -102,7 +102,7 @@ if (messageText) {
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      status = '1';
+      status = 1;
       sendButtonMessageStoppen(senderID);
     }
 
@@ -119,15 +119,15 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      status = '1';
+      status = 1;
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
     }
-    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
+    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 1)
     {
       msg = status;
       sendTextMessage(senderID, msg);
-      status = '2';
+      status = 2;
       msg = status;
       sendTextMessage(senderID, msg);
       sendButtonMessageFlow(senderID);
@@ -135,34 +135,34 @@ function receivedPostback(event) {
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
-    if(payload == 'PAYLOAD_HELP' && status == '1')
+    if(payload == 'PAYLOAD_HELP' && status == 1)
     {
       sendButtonMessageHelp(senderID);
     }
 
     // Een lijst met aankomende festivals.
-    if(payload == 'PAYLOAD_AANKOMEND' && status == '1')
+    if(payload == 'PAYLOAD_AANKOMEND' && status == 1)
     {
       sendButtonMessageAankomend(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER' && status == '3')
+    if(payload == 'PAYLOAD_REGULIER' && status == 3)
     {
       msg = status;
       sendTextMessage(senderID, msg);
-      status = '3';
+      status = 3;
       sendButtonMessageRegulier(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER_TICKET' && status == '3')
+    if(payload == 'PAYLOAD_REGULIER_TICKET' && status == 3)
     {
-      status = '1';
+      status = 1;
       sendButtonMessageSendTicket(senderID);
     }
 
     if(payload == 'PAYLOAD_STOPPEN')
     {
-      status = '1';
+      status = 1;
       sendButtonMessageStoppen(senderID);
 
     }
