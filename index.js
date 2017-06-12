@@ -145,6 +145,8 @@ function receivedPostback(event) {
     // Een lijst met aankomende festivals.
     if(payload == 'PAYLOAD_AANKOMEND' && status == '1')
     {
+      msg = status;
+      sendTextMessage(senderID, msg);
       sendButtonMessageAankomend(senderID);
     }
 
