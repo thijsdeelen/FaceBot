@@ -287,7 +287,7 @@ function sendButtonMessageAankomend(recipientID) {
 }
 
 
-function sendButtonMessageRegulier(recipientID) {
+function sendButtonMessageStoppen(recipientID) {
   var messageData = {
     recipient: {
       id: recipientID
@@ -297,19 +297,15 @@ function sendButtonMessageRegulier(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Hoeveel regulieren kaarten wil je kopen?",
+          text: "Jammer dat je niet verder wilt gaan. Wil je alsnog kaarten bestellen voor een festival. Roep dan simpel weg waar je naar toe wilt en ik zal je helpen!",
           buttons:[{
             type: "postback",
-            title: "1",
-            payload: "PAYLOAD_"
+            title: "Aankomende festivals",
+            payload: "PAYLOAD_AANKOMEND"
           }, {
             type: "postback",
-            title: "2",
-            payload: "PAYLOAD_2"
-          }, {
-            type: "postback",
-            title: "3",
-            payload: "PAYLOAD_3"
+            title: "Help mij",
+            payload: "PAYLOAD_HELP"
           }]
         }
       }
