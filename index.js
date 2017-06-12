@@ -149,7 +149,7 @@ function receivedPostback(event) {
       sendButtonMessageAankomend(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER' && status == 3)
+    if(payload == 'PAYLOAD_REGULIER' && status == 2)
     {
       msg = status;
       sendTextMessage(senderID, msg);
