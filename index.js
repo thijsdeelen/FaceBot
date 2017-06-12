@@ -144,6 +144,8 @@ function receivedPostback(event) {
 
     if(payload == 'PAYLOAD_REGULIER')
     {
+      msg = status;
+      sendTextMessage(senderID, msg);
       status = '3';
       sendButtonMessageRegulier(senderID);
     }
