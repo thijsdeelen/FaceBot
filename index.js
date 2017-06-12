@@ -146,6 +146,12 @@ function receivedPostback(event) {
       sendButtonMessageRegulier(senderID);
     }
 
+    if(payload == 'PAYLOAD_REGULIER_TICKET' && status == '3')
+    {
+      status = '1';
+      sendButtonMessageSendTicket(senderID);
+    }
+
     if(payload == 'PAYLOAD_STOPPEN')
     {
       status = '1';
@@ -334,6 +340,31 @@ function sendButtonMessageRegulier(recipientID) {
 
     callSendAPI(messageData);
   }
+
+  function sendButtonMessageSendTicket(recipientID) {
+    var messageData = {
+      recipient: {
+        id: recipientID
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "Regulieren kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 5.",
+            buttons:[{
+              type: "web_url",
+              url: "http://cmgo.to/iT3ZiYi",
+              title: "Tickets"
+
+            }]
+          }
+        }
+      }
+    };
+
+      callSendAPI(messageData);
+    }
 
 
 function sendButtonMessageStoppen(recipientID) {
