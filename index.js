@@ -75,7 +75,7 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1)
+    if(messageText.includes('aankomend') && messageText.includes('festival') && status == '1')
     {
       sendButtonMessageAankomend(senderID);
     }
@@ -84,9 +84,9 @@ if (messageText) {
       sendButtonMessageFlow(senderID);
 
       //zet status op 2 voor de volgende stap.
-      status = 2;
+      status = '2';
     }
-    if(messageText.includes('help') && status == 1)
+    if(messageText.includes('help') && status == '1')
     {
       sendButtonMessageHelp(senderID);
     }
@@ -114,24 +114,24 @@ function receivedPostback(event) {
     {
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
-      status = 1;
+      status = '1';
     }
-    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 1)
+    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
     {
       sendButtonMessageFlow(senderID);
 
       //Zet status op 2. Verwacht nu VIP of regulier.
-      status = 2;
+      status = '2';
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
-    if(payload == 'PAYLOAD_HELP' && status == 1)
+    if(payload == 'PAYLOAD_HELP' && status == '1')
     {
       sendButtonMessageHelp(senderID);
     }
 
     // Een lijst met aankomende festivals.
-    if(payload == 'PAYLOAD_AANKOMEND' && status == 1)
+    if(payload == 'PAYLOAD_AANKOMEND' && status == '1')
     {
       sendButtonMessageAankomend(senderID);
     }
@@ -139,7 +139,7 @@ function receivedPostback(event) {
     if(payload == 'PAYLOAD_STOPPEN')
     {
       sendButtonMessageStoppen(senderID);
-      status = 1;
+      status = '1';
     }
     /*switch(payload)
     {
