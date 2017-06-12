@@ -368,6 +368,10 @@ function sendButtonMessageRegulier(recipientID) {
   };
 
 
+    callSendAPI(messageData);
+  }
+
+
 function sendButtonMessageStoppen(recipientID) {
   var messageData = {
     recipient: {
