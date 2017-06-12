@@ -75,7 +75,7 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1 )
+    if(messageText.includes('aankomend') && messageText.includes('festival'))
     {
       sendButtonMessageAankomend(senderID);
     }
@@ -93,7 +93,7 @@ if (messageText) {
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      sendButtonMessageStopppen(senderID);
+      sendButtonMessageStoppen(senderID);
       status = 1;
     }
 
