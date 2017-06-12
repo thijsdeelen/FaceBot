@@ -139,6 +139,8 @@ function receivedPostback(event) {
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
     if(payload == 'PAYLOAD_HELP' && status == '1')
     {
+      msg = status;
+      sendTextMessage(senderID, msg);
       sendButtonMessageHelp(senderID);
     }
 
