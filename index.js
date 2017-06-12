@@ -4,7 +4,7 @@ var request = require('request')
 var app = express()
 
 //status van verkoop
-var status = 1;
+var status;
 
 app.set('port', (process.env.PORT || 5000))
 
