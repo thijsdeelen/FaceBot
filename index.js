@@ -317,41 +317,41 @@ function sendButtonMessageStoppen(recipientID) {
     }
   };
 
-  function sendButtonMessageFlow(recipientID) {
-    var messageData = {
-      recipient: {
-        id: recipientID
-      },
-      message: {
-        attachment: {
-          type: "template",
-          payload: {
-            template_type: "button",
-            text: "Je wilt dus naar Flow Festival 2017? Goeie keuze! Voor dit festival zijn 2 soorten kaarten beschikbaar. VIP & Regulier. Welke variant wil je aanschaffen?",
-            buttons:[{
-              type: "postback",
-              title: "Reguliere tickets",
-              payload: "PAYLOAD_REGULIER"
-            }, {
-              type: "postback",
-              title: "VIP tickets",
-              payload: "PAYLOAD_VIP"
-            }, {
-              type: "postback",
-              title: "stoppen",
-              payload: "PAYLOAD_STOPPEN"
-            }]
-          }
-        }
-      }
-    };
-
-
-
-
-
   callSendAPI(messageData);
 }
+
+function sendButtonMessageFlow(recipientID) {
+  var messageData = {
+    recipient: {
+      id: recipientID
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Je wilt dus naar Flow Festival 2017? Goeie keuze! Voor dit festival zijn 2 soorten kaarten beschikbaar. VIP & Regulier. Welke variant wil je aanschaffen?",
+          buttons:[{
+            type: "postback",
+            title: "Reguliere tickets",
+            payload: "PAYLOAD_REGULIER"
+          }, {
+            type: "postback",
+            title: "VIP tickets",
+            payload: "PAYLOAD_VIP"
+          }, {
+            type: "postback",
+            title: "stoppen",
+            payload: "PAYLOAD_STOPPEN"
+          }]
+        }
+      }
+    }
+  };
+
+    callSendAPI(messageData);
+  }
+
 
 function callSendAPI(messageData) {
     request({
