@@ -110,9 +110,11 @@ function receivedPostback(event) {
     var timeOfMessage = event.timestamp;
     var payload = event.postback.payload;
 
-    if(payload == 'GET_STARTED' && status == 1)
+    if(payload == 'GET_STARTED')
     {
       sendButtonMessageStart(senderID);
+      //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
+      status = 1;
     }
     if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 1)
     {
