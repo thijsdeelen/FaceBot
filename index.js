@@ -77,7 +77,7 @@ if (messageText) {
     // and send back the example. Otherwise, just echo the text we received.
     if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1 )
     {
-      sendButtonMessageFestivals(senderID);
+      sendButtonMessageAankomend(senderID);
     }
     if(messageText.includes('flow festival') && status == 2)
     {
