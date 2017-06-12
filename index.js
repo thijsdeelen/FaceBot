@@ -79,12 +79,11 @@ if (messageText) {
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival') && status == 1)
+    if(messageText.includes('flow festival') && status == '1')
     {
-      sendButtonMessageFlow(senderID);
-
-      //zet status op 2 voor de volgende stap.
       status = '2';
+      sendButtonMessageFlow(senderID);
+      //zet status op 2 voor de volgende stap.
     }
     if(messageText.includes('help') && status == '1')
     {
@@ -93,16 +92,16 @@ if (messageText) {
 
     if(messageText.includes('regulier') && status == '2')
     {
-      sendButtonMessageRegulier(senderID);
       status = '3';
+      sendButtonMessageRegulier(senderID);
     }
 
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      sendButtonMessageStoppen(senderID);
       status = '1';
+      sendButtonMessageStoppen(senderID);
     }
 
 }
@@ -118,15 +117,15 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
+      status = '1';
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
-      status = '1';
     }
     if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
     {
+      status = '2';
       sendButtonMessageFlow(senderID);
       //Zet status op 2. Verwacht nu VIP of regulier.
-      status = '2';
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
@@ -143,14 +142,15 @@ function receivedPostback(event) {
 
     if(payload == 'PAYLOAD_REGULIER' && status == '2')
     {
-      sendButtonMessageRegulier(senderID);
       status = '3';
+      sendButtonMessageRegulier(senderID);
     }
 
     if(payload == 'PAYLOAD_STOPPEN')
     {
-      sendButtonMessageStoppen(senderID);
       status = '1';
+      sendButtonMessageStoppen(senderID);
+
     }
     /*switch(payload)
     {
