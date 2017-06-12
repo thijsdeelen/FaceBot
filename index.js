@@ -75,19 +75,26 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('starten') && status == 1)
+    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1 )
     {
       sendButtonMessageFestivals(senderID);
-      status = 2;
     }
     if(messageText.includes('flow festival') && status == 2)
     {
       sendButtonMessageFlow(senderID);
       status = 3;
     }
-    if(messageText.includes('help'))
+    if(messageText.includes('help') && status == 1)
     {
       sendButtonMessageHelp(senderID);
+    }
+
+    //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
+    // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
+    if(messageText.includes('stoppen'))
+    {
+      sendButtonMessageStopppen(senderID);
+      status = 1;
     }
 
 }
