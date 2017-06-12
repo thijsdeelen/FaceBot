@@ -78,8 +78,6 @@ if (messageText) {
     if(messageText.includes('aankomend') && messageText.includes('festival') && status == '1')
     {
       sendButtonMessageAankomend(senderID);
-      msg = status;
-      sendTextMessage(senderID, msg);
     }
     if(messageText.includes('flow festival') && status == 1)
     {
@@ -87,16 +85,10 @@ if (messageText) {
 
       //zet status op 2 voor de volgende stap.
       status = '2';
-
-      msg = status;
-      sendTextMessage(senderID, msg);
     }
     if(messageText.includes('help') && status == '1')
     {
       sendButtonMessageHelp(senderID);
-
-      msg = status;
-      sendTextMessage(senderID, msg);
     }
 
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
@@ -104,9 +96,7 @@ if (messageText) {
     if(messageText.includes('stoppen'))
     {
       sendButtonMessageStoppen(senderID);
-      status = 1;
-      msg = status;
-      sendTextMessage(senderID, msg);
+      status = '1';
     }
 
 }
@@ -125,13 +115,10 @@ function receivedPostback(event) {
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
       status = '1';
-      msg = status;
-      sendTextMessage(senderID, msg);
     }
     if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
     {
       sendButtonMessageFlow(senderID);
-
       //Zet status op 2. Verwacht nu VIP of regulier.
       status = '2';
     }
@@ -139,16 +126,12 @@ function receivedPostback(event) {
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
     if(payload == 'PAYLOAD_HELP' && status == '1')
     {
-      msg = status;
-      sendTextMessage(senderID, msg);
       sendButtonMessageHelp(senderID);
     }
 
     // Een lijst met aankomende festivals.
     if(payload == 'PAYLOAD_AANKOMEND' && status == '1')
     {
-      msg = status;
-      sendTextMessage(senderID, msg);
       sendButtonMessageAankomend(senderID);
     }
 
@@ -337,36 +320,11 @@ function sendButtonMessageRegulier(recipientID) {
             title: "1",
             payload: "PAYLOAD_REGULIER_TICKET"
 
-          },
-          {
-            type: "postback",
-            title: "2",
-            payload: "PAYLOAD_REGULIER_TICKET"
-
-          },
-          {
-            type: "postback",
-            title: "3",
-            payload: "PAYLOAD_REGULIER_TICKET"
-
-          },
-          {
-            type: "postback",
-            title: "4",
-            payload: "PAYLOAD_REGULIER_TICKET"
-
-          },
-          {
-            type: "postback",
-            title: "5",
-            payload: "PAYLOAD_REGULIER_TICKET"
-
           }]
         }
       }
     }
   };
-
 
     callSendAPI(messageData);
   }
