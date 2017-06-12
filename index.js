@@ -4,6 +4,9 @@ var request = require('request')
 var app = express()
 
 
+//De voortgang bepaald waar de bot in het gesprek is.
+var voortgang = 'begin'
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -73,21 +76,22 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival'))
+    if(messageText.includes('aankomend') && messageText.includes('festival') && voortgang == 'begin')
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival'))
+    if(messageText.includes('flow festival') && voortgang == 'begin')
     {
       sendButtonMessageFlow(senderID);
+      voortgang = 'festival'
       //zet status op 2 voor de volgende stap.
     }
-    if(messageText.includes('help'))
+    if(messageText.includes('help') &&  voortgang == 'begin')
     {
       sendButtonMessageHelp(senderID);
     }
 
-    if(messageText.includes('regulier'))
+    if(messageText.includes('regulier') && voortgang == 'festival')
     {
       sendButtonMessageRegulier(senderID);
     }
@@ -96,6 +100,7 @@ if (messageText) {
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
+      voortgang == 'begin'
       sendButtonMessageStoppen(senderID);
     }
 
