@@ -92,7 +92,8 @@ if (messageText) {
 
     if(messageText.includes('regulier') && status == '2')
     {
-      sendTextMessage(senderID, status);
+      msg = status;
+      sendTextMessage(senderID, msg);
       status = '3';
       sendButtonMessageRegulier(senderID);
     }
