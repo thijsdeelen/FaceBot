@@ -128,6 +128,8 @@ function receivedPostback(event) {
       msg = status;
       sendTextMessage(senderID, msg);
       status = '2';
+      msg = status;
+      sendTextMessage(senderID, msg);
       sendButtonMessageFlow(senderID);
       //Zet status op 2. Verwacht nu VIP of regulier.
     }
