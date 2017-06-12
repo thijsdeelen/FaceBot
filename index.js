@@ -133,6 +133,12 @@ function receivedPostback(event) {
     {
       sendButtonMessageAankomend(senderID);
     }
+
+    if(payload == 'PAYLOAD_STOPPEN')
+    {
+      sendButtonMessageStoppen(senderID);
+      status = 1;
+    }
     /*switch(payload)
     {
         case 'GET_STARTED':
