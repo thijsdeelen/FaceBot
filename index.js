@@ -91,6 +91,12 @@ if (messageText) {
       sendButtonMessageHelp(senderID);
     }
 
+    if(messageText.includes('regulier') && status == '2')
+    {
+      sendButtonMessageRegulier(senderID);
+      status = '3';
+    }
+
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
