@@ -3,8 +3,6 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
-//status van verkoop
-var status = 0;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -75,26 +73,22 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if(messageText.includes('aankomend') && messageText.includes('festival') && status == 1)
+    if(messageText.includes('aankomend') && messageText.includes('festival'))
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival') && status == 1)
+    if(messageText.includes('flow festival'))
     {
-      status = 2;
       sendButtonMessageFlow(senderID);
       //zet status op 2 voor de volgende stap.
     }
-    if(messageText.includes('help') && status == 1)
+    if(messageText.includes('help'))
     {
       sendButtonMessageHelp(senderID);
     }
 
-    if(messageText.includes('regulier') && status == 2)
+    if(messageText.includes('regulier'))
     {
-      msg = status;
-      sendTextMessage(senderID, msg);
-      status = 3;
       sendButtonMessageRegulier(senderID);
     }
 
@@ -102,7 +96,6 @@ if (messageText) {
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      status = 1;
       sendButtonMessageStoppen(senderID);
     }
 
@@ -119,114 +112,41 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      status = 1;
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
     }
-    if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == 1)
+    if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
-      msg = status;
-      sendTextMessage(senderID, msg);
-      status = 2;
-      msg = status;
-      sendTextMessage(senderID, msg);
       sendButtonMessageFlow(senderID);
-
-      msg = status;
-      sendTextMessage(senderID, msg);
-      //Zet status op 2. Verwacht nu VIP of regulier.
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
-    if(payload == 'PAYLOAD_HELP' && status == 1)
+    if(payload == 'PAYLOAD_HELP')
     {
       sendButtonMessageHelp(senderID);
     }
 
     // Een lijst met aankomende festivals.
-    if(payload == 'PAYLOAD_AANKOMEND' && status == 1)
+    if(payload == 'PAYLOAD_AANKOMEND')
     {
       sendButtonMessageAankomend(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER' && status == 2)
+    if(payload == 'PAYLOAD_REGULIER')
     {
-      msg = status;
-      sendTextMessage(senderID, msg);
-      status = 3;
       sendButtonMessageRegulier(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER_TICKET' && status == 3)
+    if(payload == 'PAYLOAD_REGULIER_TICKET')
     {
-      status = 1;
       sendButtonMessageSendTicket(senderID);
     }
 
     if(payload == 'PAYLOAD_STOPPEN')
     {
-      status = 1;
       sendButtonMessageStoppen(senderID);
 
     }
-    /*switch(payload)
-    {
-        case 'GET_STARTED':
-            sendButtonMessageStart(senderID);
-            break;
-
-        case 'PAYLOAD_FESTIVALS':
-            sendButtonMessageFestivals(senderID);
-            break;
-
-        case 'PAYLOAD_FLOW_FESTIVAL':
-            sendButtonMessageFlow(senderID);
-            break;
-
-        case 'PAYLOAD_DANCETOUR':
-            var msg="Dancetour Breda is helaas uitverkocht.";
-            sendTextMessage(senderID,msg);
-            break;
-
-        case 'PAYLOAD_TOPPERS':
-            var msg="De Toppers zijn helaas uitverkocht.";
-            sendTextMessage(senderID,msg);
-            break;
-
-        case 'PAYLOAD_HELP':
-            var msg ="Druk op de knop festivals om een lijst met festivals te krijgen. Druk op de knop stoppen om het gesprek te stoppen.";
-
-            sendTextMessage(senderID,msg);
-            break;
-
-        case 'PAYLOAD_STOPPEN':
-            var msg ="Jammer dat je wilt stoppen met chatten. Graag tot de volgende keer!";
-
-            sendTextMessage(senderID,msg);
-            break;
-
-            case 'PAYLOAD_REGULIER':
-                sendButtonMessageRegulier(senderID);
-                break;
-
-            case 'PAYLOAD_VIP':
-                var msg ="VIP kaarten zijn helaas uitverkocht!";
-
-                sendTextMessage(senderID,msg);
-                break;
-
-            case 'PAYLOAD_EARLY_BIRD':
-                var msg ="Early-bird kaarten zijn helaas uitverkocht!";
-
-                sendTextMessage(senderID,msg);
-                break;
-
-        default :
-            var msg = "hier komt nog logica.";
-            sendTextMessage(senderID,msg);
-        break;
-
-    }*/
 
 }
 
@@ -277,7 +197,6 @@ function sendButtonMessageStart(recipientID) {
 
   callSendAPI(messageData);
 }
-
 
 function sendButtonMessageHelp(recipientID) {
   var messageData = {
@@ -377,7 +296,6 @@ function sendButtonMessageRegulier(recipientID) {
       callSendAPI(messageData);
     }
 
-
 function sendButtonMessageStoppen(recipientID) {
   var messageData = {
     recipient: {
@@ -437,7 +355,6 @@ function sendButtonMessageFlow(recipientID) {
 
     callSendAPI(messageData);
   }
-
 
 function callSendAPI(messageData) {
     request({
