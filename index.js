@@ -100,7 +100,7 @@ if (messageText) {
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      voortgang == 'begin'
+      voortgang = 'begin'
       sendButtonMessageStoppen(senderID);
     }
 
