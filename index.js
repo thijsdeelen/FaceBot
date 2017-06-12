@@ -78,6 +78,8 @@ if (messageText) {
     if(messageText.includes('aankomend') && messageText.includes('festival') && status == '1')
     {
       sendButtonMessageAankomend(senderID);
+      msg = status;
+      sendTextMessage(senderID, msg);
     }
     if(messageText.includes('flow festival') && status == 1)
     {
@@ -85,10 +87,13 @@ if (messageText) {
 
       //zet status op 2 voor de volgende stap.
       status = '2';
+
+      sendTextMessage(senderID, msg);
     }
     if(messageText.includes('help') && status == '1')
     {
       sendButtonMessageHelp(senderID);
+      sendTextMessage(senderID, msg);
     }
 
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
@@ -97,6 +102,7 @@ if (messageText) {
     {
       sendButtonMessageStoppen(senderID);
       status = 1;
+      sendTextMessage(senderID, msg);
     }
 
 }
@@ -115,6 +121,7 @@ function receivedPostback(event) {
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
       status = '1';
+      sendTextMessage(senderID, msg);
     }
     if(payload == "PAYLOAD_FLOW_FESTIVAL" && status == '1')
     {
