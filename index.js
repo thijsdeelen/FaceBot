@@ -152,6 +152,12 @@ function receivedPostback(event) {
       sendButtonMessageAankomend(senderID);
     }
 
+    if(payload == 'PAYLOAD_REGULIER' && status == '2')
+    {
+      sendButtonMessageRegulier(senderID);
+      status = '3';
+    }
+
     if(payload == 'PAYLOAD_STOPPEN')
     {
       sendButtonMessageStoppen(senderID);
@@ -314,6 +320,52 @@ function sendButtonMessageAankomend(recipientID) {
 
   callSendAPI(messageData);
 }
+
+function sendButtonMessageRegulier(recipientID) {
+  var messageData = {
+    recipient: {
+      id: recipientID
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Regulieren kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 5.",
+          buttons:[{
+            type: "postback",
+            title: "1",
+            payload: "PAYLOAD_REGULIER_TICKET"
+
+          },
+          {
+            type: "postback",
+            title: "2",
+            payload: "PAYLOAD_REGULIER_TICKET"
+
+          },
+          {
+            type: "postback",
+            title: "3",
+            payload: "PAYLOAD_REGULIER_TICKET"
+
+          },
+          {
+            type: "postback",
+            title: "4",
+            payload: "PAYLOAD_REGULIER_TICKET"
+
+          },
+          {
+            type: "postback",
+            title: "5",
+            payload: "PAYLOAD_REGULIER_TICKET"
+
+          }]
+        }
+      }
+    }
+  };
 
 
 function sendButtonMessageStoppen(recipientID) {
