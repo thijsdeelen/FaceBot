@@ -269,7 +269,7 @@ function sendButtonMessageRegulier(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "Regulieren kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 5.",
+          text: "Regulieren kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 1.",
           buttons:[{
             type: "postback",
             title: "1",
@@ -283,6 +283,31 @@ function sendButtonMessageRegulier(recipientID) {
 
     callSendAPI(messageData);
   }
+
+  function sendButtonMessageVIP(recipientID) {
+    var messageData = {
+      recipient: {
+        id: recipientID
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "VIP kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 1.",
+            buttons:[{
+              type: "postback",
+              title: "1",
+              payload: "PAYLOAD_VIP_TICKET"
+
+            }]
+          }
+        }
+      }
+    };
+
+      callSendAPI(messageData);
+    }
 
   function sendButtonMessageSendTicket(recipientID) {
     var messageData = {
