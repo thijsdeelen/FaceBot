@@ -75,24 +75,23 @@ var messageAttachments = message.attachments;
 if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
-    // and send back the example. Otherwise, just echo the text we received.
+    // and send back the example.
     if(messageText.includes('aankomend') && messageText.includes('festival') && voortgang == 'begin')
     {
       sendButtonMessageAankomend(senderID);
     }
-    if(messageText.includes('flow festival') && voortgang == 'begin')
+    else if(messageText.includes('flow festival') && voortgang == 'begin')
     {
       sendButtonMessageFlow(senderID);
       voortgang = 'festival'
       //zet status op 2 voor de volgende stap.
     }
-    if(messageText.includes('help') &&  voortgang == 'begin')
+    else if(messageText.includes('help') &&  voortgang == 'begin')
     {
       voortgang = 'begin'
       sendButtonMessageHelp(senderID);
     }
-
-    if(messageText.includes('regulier') && voortgang == 'festival')
+    else if(messageText.includes('regulier') && voortgang == 'festival')
     {
       voortgang = 'ticket'
       sendButtonMessageRegulier(senderID);
@@ -105,7 +104,6 @@ if (messageText) {
       voortgang = 'begin'
       sendButtonMessageStoppen(senderID);
     }
-
 }
 }
 
@@ -122,34 +120,34 @@ function receivedPostback(event) {
       sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
     }
-    if(payload == 'PAYLOAD_FLOW_FESTIVAL')
+    else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
       sendButtonMessageFlow(senderID);
     }
 
     // Uitleg hoe je de bot kan gebruiken naar gebruiker.
-    if(payload == 'PAYLOAD_HELP')
+    else if(payload == 'PAYLOAD_HELP')
     {
       sendButtonMessageHelp(senderID);
     }
 
     // Een lijst met aankomende festivals.
-    if(payload == 'PAYLOAD_AANKOMEND')
+    else if(payload == 'PAYLOAD_AANKOMEND')
     {
       sendButtonMessageAankomend(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER')
+    else if(payload == 'PAYLOAD_REGULIER')
     {
       sendButtonMessageRegulier(senderID);
     }
 
-    if(payload == 'PAYLOAD_REGULIER_TICKET')
+    else if(payload == 'PAYLOAD_REGULIER_TICKET')
     {
       sendButtonMessageSendTicket(senderID);
     }
 
-    if(payload == 'PAYLOAD_STOPPEN')
+    else if(payload == 'PAYLOAD_STOPPEN')
     {
       sendButtonMessageStoppen(senderID);
 
