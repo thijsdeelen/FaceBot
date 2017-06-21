@@ -1,9 +1,8 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
+var calls = require('reply.js')
 var app = express()
-var calls = require('reply.js');
-
 
 //De voortgang bepaald waar de bot in het gesprek is.
 var voortgang = 'begin'
@@ -84,19 +83,24 @@ if (messageText) {
     else if(messageText.includes('flow festival') && voortgang == 'begin')
     {
       sendButtonMessageFlow(senderID);
-      voortgang = 'festival'
-      //zet status op 2 voor de volgende stap.
+      voortgang = 'festival';
     }
     else if(messageText.includes('help') &&  voortgang == 'begin')
     {
-      voortgang = 'begin'
+      voortgang = 'begin';
       sendButtonMessageHelp(senderID);
     }
     else if(messageText.includes('regulier') && voortgang == 'festival')
     {
-      voortgang = 'ticket'
+      voortgang = 'ticket';
       sendButtonMessageRegulier(senderID);
     }
+    else if(messageText.includes('VIP') && voortgang == 'festival')
+    {
+      voortgang = 'ticket';
+      sendButtonMessageVIP(senderID);
+    }
+    // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
       msg = "Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
       sendTextMessage(senderID, msg);
@@ -122,7 +126,7 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      sendButtonMessageStart(senderID);
+      calls.sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
