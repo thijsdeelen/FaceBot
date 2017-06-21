@@ -91,13 +91,13 @@ if (messageText) {
     }
     else if(messageText.includes('regulier') && voortgang == 'festival')
     {
-      //voortgang = 'ticket';
       sendButtonMessageRegulier(senderID);
+      voortgang = 'ticket';
     }
-    else if(messageText.includes('VIP') && voortgang == 'festival')
+    else if(messageText.includes('vip') && voortgang == 'festival')
     {
-      //voortgang = 'ticket';
       sendButtonMessageVIP(senderID);
+      voortgang = 'ticket';
     }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
