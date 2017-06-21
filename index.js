@@ -96,6 +96,10 @@ if (messageText) {
       voortgang = 'ticket'
       sendButtonMessageRegulier(senderID);
     }
+    else {
+      msg = "Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
+      sendTextMessage(senderID, msg);
+    }
 
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
