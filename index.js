@@ -92,12 +92,12 @@ if (messageText) {
     else if(messageText.includes('regulier') && voortgang == 'festival')
     {
       sendButtonMessageRegulier(senderID);
-      voortgang = 'ticket';
+      voortgang = 'aardappelpure';
     }
     else if(messageText.includes('vip') && voortgang == 'festival')
     {
       sendButtonMessageVIP(senderID);
-      voortgang = 'ticket';
+      voortgang = 'aardappelpure';
     }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
