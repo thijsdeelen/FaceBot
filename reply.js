@@ -33,3 +33,6 @@ function sendButtonMessageStart(recipientID) {
 
   callSendAPI(messageData);
 }
+
+// Exporteren voor gebruik in andere bestanden.
+module.exports = reply;
