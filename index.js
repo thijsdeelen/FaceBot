@@ -101,7 +101,7 @@ if (messageText) {
     }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
-      msg = "Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
+      msg = voortgang +"   ---Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
       sendTextMessage(senderID, msg);
     }
 
