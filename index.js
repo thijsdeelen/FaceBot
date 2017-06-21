@@ -62,8 +62,8 @@ if (data.object === 'page') {
 var token = "EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD"
 
 function receivedMessage(event) {
-var senderID = event.sender.id;
-var recipientID = event.recipient.id;
+var senderID = event.sender.id.toString();
+var recipientID = event.recipient.id.toString();
 var timeOfMessage = event.timestamp;
 var message = event.message;
 
