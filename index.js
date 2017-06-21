@@ -2,6 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
+var calls = require('reply.js');
 
 
 //De voortgang bepaald waar de bot in het gesprek is.
@@ -175,7 +176,7 @@ function sendTextMessage(recipientId, messageText) {
 /*
  * Send a button message using the Send API.
  *
-*/
+
 function sendButtonMessageStart(recipientID) {
   var messageData = {
     recipient: {
@@ -206,7 +207,7 @@ function sendButtonMessageStart(recipientID) {
 
   callSendAPI(messageData);
 }
-
+*/
 function sendButtonMessageHelp(recipientID) {
   var messageData = {
     recipient: {
