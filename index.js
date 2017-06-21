@@ -125,7 +125,7 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      calls.sendButtonMessageStart(senderID);
+      sendButtonMessageStart(senderID);
       //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
