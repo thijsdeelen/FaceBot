@@ -93,15 +93,15 @@ if (messageText) {
 
     if(voortgang == 'festival')
     {
+
+      voortgang = 'ticket'
       if(messageText.includes('regulier'))
       {
         sendButtonMessageRegulier(senderID);
-        voortgang = 'ticket'
       }
       if(messageText.includes('vip'))
       {
         sendButtonMessageVIP(senderID);
-        voortgang = 'ticket'
       }
     }
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
