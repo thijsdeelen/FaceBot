@@ -93,8 +93,7 @@ if (messageText) {
 
     if(voortgang == 'festival')
     {
-
-      voortgang = 'ticket'
+      //voortgang = 'ticket'
       if(messageText.includes('regulier'))
       {
         sendButtonMessageRegulier(senderID);
