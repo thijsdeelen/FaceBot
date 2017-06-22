@@ -94,11 +94,13 @@ if (messageText) {
       sendButtonMessageRegulier(senderID);
       voortgang = 'aardappelpure';
     }
-    else if(messageText.includes('vip') && voortgang == 'festival')
+    if(voortgang == festival)
+    {
+    if(messageText.includes('vip'))
     {
       sendButtonMessageVIP(senderID);
-      voortgang = 'aardappelpure';
     }
+  }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
       msg = voortgang +"   ---Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
