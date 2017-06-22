@@ -75,32 +75,30 @@ if (messageText) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example.
-    if(messageText.includes('aankomend') && messageText.includes('festival') && voortgang == 'begin')
+    if(messageText.includes('aankomend') && messageText.includes('festival'))
     {
       sendButtonMessageAankomend(senderID);
     }
-    else if(messageText.includes('flow festival') && voortgang == 'begin')
+    if(messageText.includes('flow festival'))
     {
       sendButtonMessageFlow(senderID);
       voortgang = 'festival';
     }
-    else if(messageText.includes('help') &&  voortgang == 'begin')
+    if(messageText.includes('help'))
     {
       voortgang = 'begin';
       sendButtonMessageHelp(senderID);
     }
-    else if(messageText.includes('regulier') && voortgang == 'festival')
+    if(messageText.includes('regulier'))
     {
       sendButtonMessageRegulier(senderID);
       voortgang = 'aardappelpure';
     }
-    if(voortgang == festival)
-    {
     if(messageText.includes('vip'))
     {
       sendButtonMessageVIP(senderID);
+      voortgang = 'aardappelpure';
     }
-  }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
       msg = voortgang +"   ---Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
