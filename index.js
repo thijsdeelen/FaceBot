@@ -82,26 +82,22 @@ if (messageText) {
     if(messageText.includes('flow festival'))
     {
       sendButtonMessageFlow(senderID);
-      voortgang = 'festival';
     }
     if(messageText.includes('help'))
     {
-      voortgang = 'begin';
       sendButtonMessageHelp(senderID);
     }
     if(messageText.includes('regulier'))
     {
       sendButtonMessageRegulier(senderID);
-      voortgang = 'aardappelpure';
     }
     if(messageText.includes('vip'))
     {
       sendButtonMessageVIP(senderID);
-      voortgang = 'aardappelpure';
     }
     // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
     else {
-      msg = voortgang +"   ---Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
+      msg = "Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
       sendTextMessage(senderID, msg);
     }
 
