@@ -82,25 +82,23 @@ if (messageText) {
     if(messageText.includes('flow festival'))
     {
       sendButtonMessageFlow(senderID);
+      voortgang = 'piepiep'
     }
     if(messageText.includes('help'))
     {
       sendButtonMessageHelp(senderID);
     }
-    if(messageText.includes('regulier'))
+    if(voortgang == 'piepiep')
     {
-      sendButtonMessageRegulier(senderID);
-    }
-    if(messageText.includes('vip'))
-    {
-      sendButtonMessageVIP(senderID);
-    }
-    // Standaard optie die wordt aangeroepen als de gebruiker een fout antwoord geeft.
-    else {
-      msg = "Sorry dat begreep ik niet helemaal. Probeer het opnieuw. Vergeet niet dat je ook op de knoppen kan drukken.";
-      sendTextMessage(senderID, msg);
-    }
-
+      if(messageText.includes('regulier'))
+      {
+        sendButtonMessageRegulier(senderID);
+      }
+      if(messageText.includes('vip'))
+      {
+        sendButtonMessageVIP(senderID);
+      }
+    }  
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
     // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
