@@ -93,10 +93,10 @@ if (messageText) {
 
     if(voortgang == 'festival')
     {
-      //voortgang = 'ticket'
       if(messageText.includes('regulier'))
       {
         sendButtonMessageRegulier(senderID);
+        changeStatus();
       }
       if(messageText.includes('vip'))
       {
@@ -411,6 +411,11 @@ function callSendAPI(messageData) {
             console.error(error);
         }
     });
+}
+
+function changeStatus()
+{
+  voortgang = 'ticket';
 }
 
 // Spin up the server
