@@ -73,34 +73,39 @@ var messageText = message.text.toLowerCase();
 var messageAttachments = message.attachments;
 if (messageText) {
 
-    // If we receive a text message, check to see if it matches a keyword
-    // and send back the example.
-    if(messageText.includes('aankomend') && messageText.includes('festival'))
+    if(voortgang == 'begin')
     {
-      sendButtonMessageAankomend(senderID);
+      if(messageText.includes('aankomend') && messageText.includes('festival'))
+      {
+        sendButtonMessageAankomend(senderID);
+      }
+      if(messageText.includes('flow festival'))
+      {
+        sendButtonMessageFlow(senderID);
+        voortgang = 'festival'
+      }
+      if(messageText.includes('help'))
+      {
+        sendButtonMessageHelp(senderID);
+      }
     }
-    if(messageText.includes('flow festival'))
-    {
-      sendButtonMessageFlow(senderID);
-      voortgang = 'piepiep'
-    }
-    if(messageText.includes('help'))
-    {
-      sendButtonMessageHelp(senderID);
-    }
-    if(voortgang == 'piepiep')
+
+
+    if(voortgang == 'festival')
     {
       if(messageText.includes('regulier'))
       {
         sendButtonMessageRegulier(senderID);
+        voortgang = 'ticket'
       }
       if(messageText.includes('vip'))
       {
         sendButtonMessageVIP(senderID);
+        voortgang = 'ticket'
       }
-    }  
+    }
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
-    // Zet de status terug op 1 zodat gebruiker opnieuw kan beginnen.
+    // Zet de status terug op begin zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
       voortgang = 'begin'
