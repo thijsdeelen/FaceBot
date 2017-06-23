@@ -110,8 +110,8 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      sendButtonMessageStart(senderID);
       getName(senderID, token);
+      sendButtonMessageStart(senderID)
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
@@ -175,7 +175,7 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "He, leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
+          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
           buttons:[{
             type: "postback",
             title: "Help mij",
@@ -391,6 +391,8 @@ function getName(senderID, token)
     request(options, function(err, res, body)
     {
         var json = JSON.parse(body);
+        var first_name =  json.first_name;
+        var last_name = json.last_name;
         console.log(json);
     });
 };
