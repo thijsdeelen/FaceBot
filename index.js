@@ -395,10 +395,13 @@ function getName(senderID, token)
     request(options, function(err, res, body)
     {
         var json = JSON.parse(body);
-        var first_name =  json.first_name;
-        var last_name = json.last_name;
+        first_name = json.first_name;
+        last_name = json.last_name;
         console.log(json);
     });
+
+
+    return first_name, last_name;
 };
 
 function callSendAPI(messageData) {
