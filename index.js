@@ -3,9 +3,6 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
-//De voortgang bepaald waar de bot in het gesprek is.
-var voortgang = 'begin'
-
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -73,8 +70,6 @@ var messageText = message.text.toLowerCase();
 var messageAttachments = message.attachments;
 if (messageText) {
 
-    if(voortgang == 'begin')
-    {
       if(messageText.includes('aankomend') && messageText.includes('festival'))
       {
         sendButtonMessageAankomend(senderID);
@@ -88,27 +83,22 @@ if (messageText) {
       {
         sendButtonMessageHelp(senderID);
       }
-    }
-
-
-    if(voortgang == 'festival')
-    {
       if(messageText.includes('regulier'))
       {
         sendButtonMessageRegulier(senderID);
-        changeStatus();
       }
       if(messageText.includes('vip'))
       {
         sendButtonMessageVIP(senderID);
       }
-    }
+
     //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
     // Zet de status terug op begin zodat gebruiker opnieuw kan beginnen.
     if(messageText.includes('stoppen'))
     {
-      voortgang = 'begin'
       sendButtonMessageStoppen(senderID);
+      msg = senderID;
+      sendTextMessage(senderID, msg)
     }
 }
 }
