@@ -390,7 +390,7 @@ function getName(senderID, token)
 
     request(options, function(err, res, body)
     {
-        var json = JSON.parse(body);
+        var json = JSON.parse(res);
         var first_name =  json.first_name;
         var last_name = json.last_name;
         console.log(json);
