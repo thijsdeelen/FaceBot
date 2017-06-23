@@ -77,7 +77,7 @@ if (messageText) {
       if(messageText.includes('flow festival'))
       {
         sendButtonMessageFlow(senderID);
-        voortgang = 'festival'
+        getName(senderID, token);
       }
       if(messageText.includes('help'))
       {
@@ -382,15 +382,16 @@ function sendButtonMessageFlow(recipientID) {
   }
 
 function getName(senderID, token) {
-  request({
-      uri: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=' + token,
-      method : 'GET'
-  }, function (error, response, body){
-     var first_name = body.first_name;
-     var last_name = body.last_name;
-     console.log(response);
-  }
+
+  const options = {
+    'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=' + token,
+    method : 'GET'
+};
+request(options, function(err, res, body) {
+  let json = JSON.parse(body);
+  console.log(json);
 )};
+
 function callSendAPI(messageData) {
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
