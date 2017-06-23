@@ -113,11 +113,7 @@ function receivedPostback(event) {
 
     if(payload == 'GET_STARTED')
     {
-      getName(senderID, token);
       sendButtonMessageStart(senderID);
-      //Zorgt ervoor dat de status altijd op 1 staat aan het begin van een nieuw gesprek.
-      msg = first_name + last_name;
-      sendTextMessage(senderID);
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
@@ -392,12 +388,12 @@ function getName(senderID, token) {
   }, function (error, response, body){
      var first_name = body.first_name;
      var last_name = body.last_name;
-     console.log(response, body);
+     console.log(response);
   }
 )};
 function callSendAPI(messageData) {
     request({
-        uri: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: { access_token: token },
         method: 'POST',
         json: messageData
