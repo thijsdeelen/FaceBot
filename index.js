@@ -3,24 +3,6 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
-function getName(senderID, token)
-{
-
-  const options = {
-    url: 'https://graph.facebook.com/v2.6/'+ senderID +'?fields=first_name,last_name&access_token=' + token,
-    method: 'GET',
-    headers: {}
-    };
-
-    request(options, function(err, res, body)
-    {
-        var json = JSON.parse(body);
-        first_name = json.first_name;
-        last_name = json.last_name;
-        console.log(first_name + last_name);
-    });
-};
-
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -86,8 +68,8 @@ var messageId = message.mid;
 
 var messageText = message.text.toLowerCase();
 var messageAttachments = message.attachments;
-if (messageText) {
-
+if (messageText)
+    {
       if(messageText.includes('aankomend') && messageText.includes('festival'))
       {
         sendButtonMessageAankomend(senderID);
@@ -108,14 +90,7 @@ if (messageText) {
       {
         sendButtonMessageVIP(senderID);
       }
-
-    //Als de gebruiker wilt stoppen of een ander festival wilt kiezen kan dit via stoppen.
-    // Zet de status terug op begin zodat gebruiker opnieuw kan beginnen.
-    if(messageText.includes('stoppen'))
-    {
-      sendButtonMessageStoppen(senderID);
     }
-}
 }
 
 function receivedPostback(event) {
@@ -178,6 +153,25 @@ function sendTextMessage(recipientId, messageText) {
     // call the send API
     callSendAPI(messageData);
 }
+
+// Zet hier de getName neer anders kan start payload hem niet zien...
+function getName(senderID, token)
+{
+
+  const options = {
+    url: 'https://graph.facebook.com/v2.6/'+ senderID +'?fields=first_name,last_name&access_token=' + token,
+    method: 'GET',
+    headers: {}
+    };
+
+    request(options, function(err, res, body)
+    {
+        var json = JSON.parse(body);
+        first_name = json.first_name;
+        last_name = json.last_name;
+        console.log(first_name + last_name);
+    });
+};
 
 /*
  * Send a button message using the Send API.
