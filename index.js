@@ -399,6 +399,8 @@ function getName(senderID, token)
         last_name = json.last_name;
         console.log(first_name + last_name);
     });
+
+    return first_name + last_name;
 };
 
 function callSendAPI(messageData) {
