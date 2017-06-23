@@ -104,6 +104,7 @@ function receivedPostback(event) {
     if(payload == 'GET_STARTED')
     {
       getName(senderID, token);
+      getPaymentURL();
       sendButtonMessageStart(senderID)
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
@@ -173,6 +174,28 @@ function getName(senderID, token)
     });
 };
 
+// Zet hier de Payment api call neer anders ziet de betaal payload hem niet...
+function getPaymentURL()
+{
+
+  const options = {
+    url: 'https://cmprojectgroep1.herokuapp.com/tickets/ticketBestellen',
+    method: 'POST',
+    headers: {},
+    body: {
+      "debitor_reference":"\"" + first_name + " "+ last_name "\"",
+      "total_amount":"15.00" // ToDo : voeg toe dat dit uit een variable wordt gehaalt met de échte prijs.
+    }
+    };
+
+    request(options, function(err, res, body)
+    {
+        var json = JSON.parse(body);
+        checkoutURL = json.checkout;
+        console.log(checkoutURL);
+    });
+};
+
 /*
  * Send a button message using the Send API.
  *
@@ -187,7 +210,7 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
+          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg." + checkoutURL,
           buttons:[{
             type: "postback",
             title: "Help mij",
