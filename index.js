@@ -125,6 +125,11 @@ function receivedPostback(event) {
       getPaymentURL();
       sendButtonMessageRegulier(senderID);
     }
+    if(payload == 'PAYLOAD_VIP')
+    {
+      getPaymentURL();
+      sendButtonMessageVIP(senderID);
+    }
     if(payload == 'PAYLOAD_REGULIER_TICKET')
     {
       sendButtonMessageSendTicket(senderID);
