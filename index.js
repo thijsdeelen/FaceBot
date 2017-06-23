@@ -384,7 +384,7 @@ function sendButtonMessageFlow(recipientID) {
 function getName(senderID, token) {
 
   var options = {
-    url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=' + token,
+    url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD',
     method : 'GET'
 };
 request(options, function(err, res, body) {
