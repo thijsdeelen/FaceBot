@@ -175,7 +175,7 @@ function getPaymentURL()
     url: 'https://cmprojectgroep1.herokuapp.com/tickets/ticketBestellen',
     method: 'POST',
     body: {
-	"debitor_reference":'"'+ first_name + '' + last_name + '"',
+	"debitor_reference": first_name + " " + last_name,
 	"total_amount":"50"
 },
     json: true,
