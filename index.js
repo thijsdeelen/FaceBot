@@ -131,7 +131,7 @@ function receivedPostback(event) {
     }
     if (payload == 'PAYLOAD_VIP_TICKET')
     {
-      sendButtonMessageVIP(senderID);
+      sendButtonMessageSendTicket(senderID);
     }
 }
 
@@ -188,7 +188,7 @@ function getPaymentURL()
     {
         //var json = JSON.parse(body);
         checkoutURL = body.checkout;
-        console.log(body);
+        console.log(checkoutURL);
     });
 };
 
@@ -315,7 +315,6 @@ function sendButtonMessageRegulier(recipientID) {
               type: "postback",
               title: "1",
               payload: "PAYLOAD_VIP_TICKET"
-
             }]
           }
         }
@@ -335,7 +334,7 @@ function sendButtonMessageRegulier(recipientID) {
           type: "template",
           payload: {
             template_type: "button",
-            text: "Regulieren kaarten voor Flow festival. Prima keuze. Door hieronder op betalen te klikken wordt je door gelinkt naar een betaal pagina. Na de betaling zal je spoedig je tickets ontvangen.",
+            text: "Kaarten voor Flow festival. Prima keuze. Door hieronder op betalen te klikken wordt je door gelinkt naar een betaal pagina. Na de betaling zal je spoedig je tickets ontvangen.",
             buttons:[{
               type: "web_url",
               url: checkoutURL,
