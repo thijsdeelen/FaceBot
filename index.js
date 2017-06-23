@@ -194,9 +194,8 @@ function getPaymentURL()
     request(option, function(err, res, body)
     {
         //var json = JSON.parse(body);
-        //checkoutURL = json.checkout;
+        checkoutURL = body.checkout;
         console.log(body);
-        console.log(option);
     });
 };
 
