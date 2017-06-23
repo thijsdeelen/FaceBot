@@ -184,10 +184,7 @@ function getPaymentURL()
     headers: {
       "Content-Type":"application/json"
     },
-    body: {
-      "debitor_reference":"Thijs Deelen",
-      "total_amount":"15.00" // ToDo : voeg toe dat dit uit een variable wordt gehaalt met de échte prijs.
-    }
+    form: {'debitor_reference': 'Thijs Deelen', 'total_amount': '14,99'}
     };
 
     request(option, function(err, res, body)
