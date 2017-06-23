@@ -3,9 +3,23 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
-//globale vars
-var first_name = getName().first_name;
-var last_name = getName().last_name;
+function getName(senderID, token)
+{
+
+  const options = {
+    url: 'https://graph.facebook.com/v2.6/'+ senderID +'?fields=first_name,last_name&access_token=' + token,
+    method: 'GET',
+    headers: {}
+    };
+
+    request(options, function(err, res, body)
+    {
+        var json = JSON.parse(body);
+        first_name = json.first_name;
+        last_name = json.last_name;
+        console.log(first_name + last_name);
+    });
+};
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -382,26 +396,6 @@ function sendButtonMessageFlow(recipientID) {
 
     callSendAPI(messageData);
   }
-
-function getName(senderID, token)
-{
-
-  const options = {
-    url: 'https://graph.facebook.com/v2.6/'+ senderID +'?fields=first_name,last_name&access_token=' + token,
-    method: 'GET',
-    headers: {}
-    };
-
-    request(options, function(err, res, body)
-    {
-        var json = JSON.parse(body);
-        first_name = json.first_name;
-        last_name = json.last_name;
-        console.log(first_name + last_name);
-    });
-
-    return first_name + last_name;
-};
 
 function callSendAPI(messageData) {
     request({
