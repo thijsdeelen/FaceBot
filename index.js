@@ -178,17 +178,19 @@ function getName(senderID, token)
 function getPaymentURL()
 {
 
-  const options = {
+  const option = {
     url: 'https://cmprojectgroep1.herokuapp.com/tickets/ticketBestellen',
     method: 'POST',
-    headers: {},
+    headers: {
+      "Conten-Type":"application/json"
+    },
     body: {
       "debitor_reference":"Thijs Deelen",
       "total_amount":"15.00" // ToDo : voeg toe dat dit uit een variable wordt gehaalt met de échte prijs.
     }
     };
 
-    request(options, function(err, res, body)
+    request(option, function(err, res, body)
     {
         var json = JSON.parse(body);
         checkoutURL = json.checkout;
