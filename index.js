@@ -4,8 +4,8 @@ var request = require('request')
 var app = express()
 
 //globale vars
-var first_name;
-var last_name;
+var first_name = getName().first_name;
+var last_name = getName().last_name;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -399,9 +399,6 @@ function getName(senderID, token)
         last_name = json.last_name;
         console.log(first_name + last_name);
     });
-
-
-    return first_name + last_name;
 };
 
 function callSendAPI(messageData) {
