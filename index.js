@@ -183,7 +183,7 @@ function getPaymentURL()
     method: 'POST',
     headers: {},
     body: {
-      "debitor_reference":"\"" + first_name + " "+ last_name "\"",
+      "debitor_reference":"Thijs Deelen",
       "total_amount":"15.00" // ToDo : voeg toe dat dit uit een variable wordt gehaalt met de échte prijs.
     }
     };
