@@ -84,10 +84,12 @@ if (messageText)
       }
       if(messageText.includes('regulier'))
       {
+        getPaymentURL();
         sendButtonMessageRegulier(senderID);
       }
       if(messageText.includes('vip'))
       {
+        getPaymentURL();
         sendButtonMessageVIP(senderID);
       }
     }
@@ -104,42 +106,33 @@ function receivedPostback(event) {
     if(payload == 'GET_STARTED')
     {
       getName(senderID, token);
-      getPaymentURL();
       sendButtonMessageStart(senderID)
     }
-    else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
+    if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
       sendButtonMessageFlow(senderID);
     }
-
-    // Uitleg hoe je de bot kan gebruiken naar gebruiker.
-    else if(payload == 'PAYLOAD_HELP')
+    if(payload == 'PAYLOAD_HELP')
     {
       sendButtonMessageHelp(senderID);
     }
-
-    // Een lijst met aankomende festivals.
-    else if(payload == 'PAYLOAD_AANKOMEND')
+    if(payload == 'PAYLOAD_AANKOMEND')
     {
       sendButtonMessageAankomend(senderID);
     }
-
-    else if(payload == 'PAYLOAD_REGULIER')
+    if(payload == 'PAYLOAD_REGULIER')
     {
+      getPaymentURL();
       sendButtonMessageRegulier(senderID);
     }
-
-    else if(payload == 'PAYLOAD_REGULIER_TICKET')
+    if(payload == 'PAYLOAD_REGULIER_TICKET')
     {
       sendButtonMessageSendTicket(senderID);
     }
-
-    else if(payload == 'PAYLOAD_STOPPEN')
+    if (payload == 'PAYLOAD_VIP_TICKET')
     {
-      sendButtonMessageStoppen(senderID);
-
+      sendButtonMessageVIP(senderID);
     }
-
 }
 
 function sendTextMessage(recipientId, messageText) {
@@ -213,7 +206,7 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg." + checkoutURL,
+          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
           buttons:[{
             type: "postback",
             title: "Help mij",
@@ -342,11 +335,11 @@ function sendButtonMessageRegulier(recipientID) {
           type: "template",
           payload: {
             template_type: "button",
-            text: "Regulieren kaarten voor Flow festival. Prima keuze. Hoeveel kaarten zou je willen bestellen. Het maximaal aantal kaarten dat je tegelijkertijd kan kopen is 5.",
+            text: "Regulieren kaarten voor Flow festival. Prima keuze. Door hieronder op betalen te klikken wordt je door gelinkt naar een betaal pagina. Na de betaling zal je spoedig je tickets ontvangen.",
             buttons:[{
               type: "web_url",
-              url: "http://cmgo.to/iT3ZiYi",
-              title: "Tickets"
+              url: checkoutURL,
+              title: "Betalen"
 
             }]
           }
@@ -356,34 +349,6 @@ function sendButtonMessageRegulier(recipientID) {
 
       callSendAPI(messageData);
     }
-
-function sendButtonMessageStoppen(recipientID) {
-  var messageData = {
-    recipient: {
-      id: recipientID
-    },
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: "Jammer dat je niet verder wilt gaan. Wil je alsnog kaarten bestellen voor een festival. Roep dan simpel weg waar je naar toe wilt en ik zal je helpen!",
-          buttons:[{
-            type: "postback",
-            title: "Aankomende festivals",
-            payload: "PAYLOAD_AANKOMEND"
-          }, {
-            type: "postback",
-            title: "Help mij",
-            payload: "PAYLOAD_HELP"
-          }]
-        }
-      }
-    }
-  };
-
-  callSendAPI(messageData);
-}
 
 function sendButtonMessageFlow(recipientID) {
   var messageData = {
@@ -404,10 +369,6 @@ function sendButtonMessageFlow(recipientID) {
             type: "postback",
             title: "VIP tickets",
             payload: "PAYLOAD_VIP"
-          }, {
-            type: "postback",
-            title: "stoppen",
-            payload: "PAYLOAD_STOPPEN"
           }]
         }
       }
