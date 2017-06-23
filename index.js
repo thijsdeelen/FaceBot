@@ -111,7 +111,7 @@ function receivedPostback(event) {
     if(payload == 'GET_STARTED')
     {
       sendButtonMessageStart(senderID);
-      getName(senderID);
+      getName(senderID, token);
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
