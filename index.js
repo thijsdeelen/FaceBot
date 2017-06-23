@@ -196,6 +196,7 @@ function getPaymentURL()
         //var json = JSON.parse(body);
         //checkoutURL = json.checkout;
         console.log(body);
+        console.log(option);
     });
 };
 
