@@ -181,7 +181,7 @@ function getPaymentURL()
   const option = {
     url: 'https://cmprojectgroep1.herokuapp.com/tickets/ticketBestellen',
     method: 'POST',
-    body: {"debitor_reference": "Thijs Deelen", "total_amount": "14,99"}
+    body: {"debitor_reference": "Thijs Deelen", "total_amount": "14,99"},
     json: true,
     headers: {
       "Content-Type":"application/json"
