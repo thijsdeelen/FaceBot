@@ -191,7 +191,7 @@ function getPaymentURL()
     {
         var json = JSON.parse(body);
         checkoutURL = json.checkout;
-        console.log(checkoutURL);
+        console.log(json);
     });
 };
 
