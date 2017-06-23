@@ -383,8 +383,8 @@ function sendButtonMessageFlow(recipientID) {
 
 function getName(senderID, token) {
 
-  const options = {
-    'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=' + token,
+  var options = {
+    url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=' + token,
     method : 'GET'
 };
 request(options, function(err, res, body) {
