@@ -339,7 +339,7 @@ function sendButtonMessageRegulier(recipientID) {
           type: "template",
           payload: {
             template_type: "button",
-            text: "Kaarten voor Flow festival. Prima keuze. Door hieronder op betalen te klikken wordt je door gelinkt naar een betaal pagina. Na de betaling zal je spoedig je tickets ontvangen.",
+            text: "Door hieronder op betalen te klikken wordt je door gelinkt naar een betaal pagina. Na de betaling zal je spoedig je tickets ontvangen.",
             buttons:[{
               type: "web_url",
               url: checkoutURL,
