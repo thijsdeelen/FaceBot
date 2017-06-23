@@ -27,9 +27,6 @@ app.get('/webhook/', function (req, res) {
 app.post('/webhook', function (req, res) {
 var data = req.body;
 
-
-getName(senderID, token);
-
 // Make sure this is a page subscription
 if (data.object === 'page') {
 
@@ -114,6 +111,7 @@ function receivedPostback(event) {
     if(payload == 'GET_STARTED')
     {
       sendButtonMessageStart(senderID);
+      getName(senderID);
     }
     else if(payload == 'PAYLOAD_FLOW_FESTIVAL')
     {
@@ -381,12 +379,13 @@ function sendButtonMessageFlow(recipientID) {
     callSendAPI(messageData);
   }
 
-function getName(senderID, token) {
+function getName(senderID) {
 
-  var options = {
-    url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD',
-    method : 'GET'
-};
+  var options =
+    {
+      url: 'https://graph.facebook.com/v2.6/' + senderID + '?fields=first_name,last_name&access_token=EAAcDZBHcmgBgBAPNOxOdPjElhIx2tZCdTekxRhiGVffM5Ueb5eQZCWOnOeaHEPhtvXRJ3hSUi60mK6aKcVxy8s4s7HbZC3kqdLi8OwwUmJKBqiVBIBMeVVZAax8grfznxXdstqf3ybeJ3dpZArXLDU9kZBqAOppjgxFT3QUdDgiwAZDZD',
+      method : 'GET'
+    };
 request(options, function(err, res, body) {
   let json = JSON.parse(body);
   console.log(json);
