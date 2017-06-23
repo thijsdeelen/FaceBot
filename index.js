@@ -182,7 +182,7 @@ function getPaymentURL()
     url: 'https://cmprojectgroep1.herokuapp.com/tickets/ticketBestellen',
     method: 'POST',
     headers: {
-      "Conten-Type":"application/json"
+      "Content-Type":"application/json"
     },
     body: {
       "debitor_reference":"Thijs Deelen",
