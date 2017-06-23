@@ -3,6 +3,10 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var app = express()
 
+//globale vars
+var first_name;
+var last_name;
+
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -390,7 +394,7 @@ function getName(senderID, token)
 
     request(options, function(err, res, body)
     {
-        var json = JSON.parse(res);
+        var json = JSON.parse(body);
         var first_name =  json.first_name;
         var last_name = json.last_name;
         console.log(json);
