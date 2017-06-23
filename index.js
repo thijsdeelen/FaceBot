@@ -390,7 +390,8 @@ function getName(senderID, token) {
 request(options, function(err, res, body) {
   let json = JSON.parse(body);
   console.log(json);
-)};
+)}
+};
 
 function callSendAPI(messageData) {
     request({
