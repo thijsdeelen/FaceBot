@@ -74,23 +74,28 @@ if (messageText)
       {
         sendButtonMessageAankomend(senderID);
       }
-      if(messageText.includes('flow festival'))
+      else if(messageText.includes('flow festival'))
       {
         sendButtonMessageFlow(senderID);
       }
-      if(messageText.includes('help'))
+      else if(messageText.includes('help'))
       {
         sendButtonMessageHelp(senderID);
       }
-      if(messageText.includes('regulier'))
+      else if(messageText.includes('regulier'))
       {
         getPaymentURL();
         sendButtonMessageRegulier(senderID);
       }
-      if(messageText.includes('vip'))
+      else if(messageText.includes('vip'))
       {
         getPaymentURL();
         sendButtonMessageVIP(senderID);
+      }
+      else()
+      {
+        msg = "Sorry " + first_name + " dat begreep ik niet helemaal... probeer het opnieuw!"
+        sendTextMessage(senderID, msg);
       }
     }
 }
