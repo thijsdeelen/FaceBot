@@ -143,6 +143,11 @@ function receivedPostback(event) {
     {
       sendButtonMessageSendTicket(senderID);
     }
+    if(payload == "PAYLOAD_CLICKED")
+    {
+      msg = "Je hebt om de link geklikt."
+      sendTextMessage(senderID, msg)
+    }
 }
 
 function sendTextMessage(recipientId, messageText) {
@@ -348,7 +353,8 @@ function sendButtonMessageRegulier(recipientID) {
             buttons:[{
               type: "web_url",
               url: checkoutURL,
-              title: "Betalen"
+              title: "Betalen",
+              payload: "PAYLOAD_CLICKED"
 
             }]
           }
