@@ -216,7 +216,7 @@ function sendButtonMessageStart(recipientID) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "He "+ first_name +" "+ last_name +", leuk dat je contact met me opneemt! Ik ben een bot en kan je helpen met het bestellen van kaarten. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type help of druk op de knop voor een uitleg.",
+          text: "Hoi "+ first_name +", leuk dat je contact met me opneemt! Ik ben een chatbot die je kan helpen met het bestellen van evenement kaartjes. Laat me weten welk festival je wilt bezoeken en ik zal je helpen! Niet zeker wat je moet doen? Type 'help' of druk op de knop voor een uitleg.",
           buttons:[{
             type: "postback",
             title: "Help mij",
