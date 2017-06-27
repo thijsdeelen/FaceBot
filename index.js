@@ -146,7 +146,7 @@ function receivedPostback(event) {
     if(payload == "PAYLOAD_CLICKED")
     {
       msg = "Je hebt om de link geklikt."
-      sendTextMessage(senderID, msg)
+      sendTextMessage(senderID, msg);
     }
 }
 
