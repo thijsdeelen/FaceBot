@@ -92,7 +92,7 @@ if (messageText)
         getPaymentURL();
         sendButtonMessageVIP(senderID);
       }
-      else()
+      else
       {
         msg = "Sorry " + first_name + " dat begreep ik niet helemaal... probeer het opnieuw!"
         sendTextMessage(senderID, msg);
